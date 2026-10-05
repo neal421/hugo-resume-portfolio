@@ -1,6 +1,53 @@
 {{ define "main" }}
 {{ $r := hugo.Data.resume }}
 
+<style>
+  .ambient-glow { position: absolute; top: 0; left: 0; right: 0; height: 520px; background: radial-gradient(ellipse 75% 420px at 50% -80px, hsla(192, 88%, 48%, 0.15) 0%, hsla(38, 90%, 50%, 0.05) 45%, transparent 80%); pointer-events: none; z-index: 0; }
+  main, header, footer { position: relative; z-index: 1; }
+  .role-org { color: var(--accent-primary); font-weight: 600; }
+  .highlight-card { display: flex; align-items: flex-start; gap: 1rem; }
+  .highlight-icon-box { display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 10px; background: var(--accent-primary-subtle); color: var(--accent-primary); flex-shrink: 0; margin-top: 0.1rem; }
+  .highlight-icon-box svg { width: 21px; height: 21px; }
+  .highlight-body { flex: 1; }
+  .metrics-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 3rem; padding-top: 2.25rem; border-top: 1px solid var(--border-subtle); }
+  .metric-tile { display: flex; flex-direction: column; gap: 0.2rem; padding: 1.1rem 1.25rem; border-radius: 10px; background: var(--bg-secondary); border: 1px solid var(--border-subtle); }
+  .metric-value { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; color: var(--text-primary); line-height: 1.15; }
+  .metric-caption { font-size: 0.82rem; color: var(--text-secondary); }
+  .timeline-track { position: relative; display: flex; flex-direction: column; gap: 1.5rem; padding-left: 2rem; }
+  .timeline-track::before { content: ""; position: absolute; top: 0.75rem; bottom: 0.75rem; left: 7px; width: 2px; background: var(--border-strong); }
+  .timeline-item { position: relative; display: block; padding: 0; background: none; border: none; box-shadow: none; }
+  .timeline-node { position: absolute; left: -2rem; top: 1.75rem; width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; }
+  .node-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--surface-card); border: 2px solid var(--accent-primary); }
+  .node-dot.node-active { background: var(--accent-status); border-color: var(--accent-status); box-shadow: 0 0 0 5px hsla(152, 72%, 46%, 0.16); }
+  .timeline-card { background-color: var(--surface-card); background-image: var(--surface-texture); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 1.75rem 2rem; box-shadow: var(--shadow-card); }
+  .timeline-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1.25rem; flex-wrap: wrap; padding-bottom: 1rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border-subtle); }
+  .company-pill-row { display: flex; align-items: center; gap: 0.65rem; margin-bottom: 0.3rem; }
+  .timeline-meta-group { display: flex; flex-direction: column; align-items: flex-end; gap: 0.2rem; text-align: right; }
+  .timeline-bullets.bullets-two-col { display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 1.75rem; row-gap: 0.65rem; }
+  .projects-grid, .education-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .education-card { display: flex; align-items: flex-start; gap: 1.15rem; background-color: var(--surface-card); background-image: var(--surface-texture); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 1.65rem; box-shadow: var(--shadow-card); }
+  .edu-icon-box { display: flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 10px; background: hsla(38, 94%, 56%, 0.12); color: var(--accent-secondary); flex-shrink: 0; }
+  .edu-icon-box svg { width: 22px; height: 22px; }
+  .edu-body { flex: 1; }
+  .edu-header { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.35rem; flex-wrap: wrap; }
+  .edu-institution { font-family: var(--font-mono); font-size: 0.78rem; font-weight: 600; color: var(--accent-primary); text-transform: uppercase; letter-spacing: 0.04em; }
+  .edu-period { font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-muted); }
+  .edu-degree { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.45rem; }
+  .edu-detail { font-size: 0.88rem; color: var(--text-secondary); }
+  .certs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.15rem; }
+  .cert-card { display: flex; flex-direction: column; background-color: var(--surface-card); background-image: var(--surface-texture); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 1.25rem 1.35rem; box-shadow: var(--shadow-card); }
+  .cert-top { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.6rem; }
+  .cert-issuer-pill { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 600; padding: 0.16rem 0.5rem; border-radius: 4px; background: var(--accent-primary-subtle); color: var(--accent-primary); text-transform: uppercase; }
+  .cert-date { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); }
+  .cert-name { font-family: var(--font-display); font-size: 0.98rem; font-weight: 600; margin-bottom: 0.35rem; line-height: 1.3; }
+  .cert-detail { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.48; }
+  @media (max-width: 960px) { .metrics-strip, .certs-grid { grid-template-columns: repeat(2, 1fr); } .timeline-bullets.bullets-two-col, .projects-grid, .education-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 600px) { .metrics-strip, .certs-grid { grid-template-columns: 1fr; } .timeline-meta-group { align-items: flex-start; text-align: left; } }
+</style>
+
+<!-- Ambient Top Glow -->
+<div class="ambient-glow no-print" aria-hidden="true"></div>
+
 <!-- Top Navigation Header -->
 <header class="site-header no-print" id="site-header">
   <div class="container header-inner">
@@ -14,23 +61,14 @@
 
     <nav class="site-nav" aria-label="Primary Navigation">
       <a href="#experience" class="nav-link" id="nav-experience">Experience</a>
-      <a href="#domains" class="nav-link" id="nav-domains">Technical Domains</a>
-      <a href="#projects" class="nav-link" id="nav-projects">Initiatives</a>
-      <a href="#credentials" class="nav-link" id="nav-credentials">Credentials</a>
+      <a href="#domains" class="nav-link" id="nav-domains">Skills</a>
+      <a href="#projects" class="nav-link" id="nav-projects">Projects</a>
+      <a href="#education" class="nav-link" id="nav-education">Education</a>
+      <a href="#certifications" class="nav-link" id="nav-certifications">Certifications</a>
       <a href="#contact" class="nav-link" id="nav-contact">Contact</a>
     </nav>
 
     <div class="header-actions">
-      <button type="button" class="btn-ghost" id="cms-guide-toggle" aria-expanded="false" aria-controls="cms-guide-drawer" title="How to edit and deploy this Hugo site">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-          <polyline points="14 2 14 8 20 8"></polyline>
-          <line x1="16" y1="13" x2="8" y2="13"></line>
-          <line x1="16" y1="17" x2="8" y2="17"></line>
-        </svg>
-        <span>CMS Guide</span>
-      </button>
-
       <button type="button" class="btn-secondary" id="print-resume-btn" title="Print or save formatted PDF resume">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
           <polyline points="6 9 6 2 18 2 18 9"></polyline>
@@ -68,10 +106,10 @@
         <div class="hero-primary">
           <div class="hero-meta-line">
             <span class="mono-label">{{ $r.profile.organization }}</span>
-            <span class="meta-separator" aria-hidden="true">/</span>
-            <span class="mono-label">{{ $r.profile.availability }}</span>
-            <span class="meta-separator" aria-hidden="true">/</span>
+            <span class="meta-separator" aria-hidden="true">•</span>
             <span class="mono-label">{{ $r.profile.location }}</span>
+            <span class="meta-separator" aria-hidden="true">•</span>
+            <span class="mono-label">{{ $r.profile.availability }}</span>
           </div>
 
           <h1 class="hero-title">{{ $r.profile.name }}</h1>
@@ -92,13 +130,20 @@
 
           <div class="hero-cta-row no-print">
             <a href="#experience" class="btn-primary" id="hero-explore-btn">
-              <span>View Experience &amp; Specs</span>
+              <span>Explore Career Timeline</span>
               <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
             </a>
-            <a href="#contact" class="btn-secondary" id="hero-contact-btn">Get in Touch</a>
+            <a href="{{ $r.profile.contact.linkedin }}" target="_blank" rel="noopener noreferrer" class="btn-secondary" id="hero-linkedin-btn">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+              <span>LinkedIn Profile</span>
+            </a>
             <button type="button" class="btn-ghost" id="copy-email-hero-btn" data-email="{{ $r.profile.contact.email }}">
               <span class="copy-label">{{ $r.profile.contact.email }}</span>
               <span class="copy-badge" id="copy-email-feedback">Copy</span>
@@ -110,15 +155,61 @@
         <aside class="hero-highlights" aria-label="Core Operational Areas">
           {{ range $index, $item := $r.highlights }}
           <div class="highlight-card">
-            <div class="highlight-header">
-              <span class="highlight-index">0{{ add $index 1 }}</span>
-              <span class="highlight-metric">{{ $item.metric }}</span>
+            <div class="highlight-icon-box" aria-hidden="true">
+              {{ if eq $index 0 }}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+              </svg>
+              {{ else if eq $index 1 }}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                <circle cx="12" cy="5" r="3"></circle>
+                <line x1="12" y1="8" x2="12" y2="14"></line>
+                <circle cx="6" cy="19" r="3"></circle>
+                <circle cx="18" cy="19" r="3"></circle>
+                <path d="M12 14l-6 2.5"></path>
+                <path d="M12 14l6 2.5"></path>
+              </svg>
+              {{ else }}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                <polyline points="9 12 11 14 15 10"></polyline>
+              </svg>
+              {{ end }}
             </div>
-            <h2 class="highlight-title">{{ $item.label }}</h2>
-            <p class="highlight-detail">{{ $item.detail }}</p>
+            <div class="highlight-body">
+              <div class="highlight-header">
+                <span class="highlight-metric">{{ $item.metric }}</span>
+                <span class="highlight-index">0{{ add $index 1 }}</span>
+              </div>
+              <h2 class="highlight-title">{{ $item.label }}</h2>
+              <p class="highlight-detail">{{ $item.detail }}</p>
+            </div>
           </div>
           {{ end }}
         </aside>
+      </div>
+
+      <!-- Key Career Metrics Strip -->
+      <div class="metrics-strip no-print" aria-label="Career At a Glance">
+        <div class="metric-tile">
+          <span class="metric-value">12+</span>
+          <span class="metric-caption">Years IT &amp; Infrastructure Experience</span>
+        </div>
+        <div class="metric-tile">
+          <span class="metric-value">Google</span>
+          <span class="metric-caption">Hyperscale Data Center Operations</span>
+        </div>
+        <div class="metric-tile">
+          <span class="metric-value">11</span>
+          <span class="metric-caption">Industry IT &amp; Security Certifications</span>
+        </div>
+        <div class="metric-tile">
+          <span class="metric-value">B.S. + A.A.S.</span>
+          <span class="metric-caption">Degrees in Information Technology</span>
+        </div>
       </div>
     </div>
   </section>
@@ -127,9 +218,9 @@
   <section class="filter-bar-section no-print" aria-label="Filter Portfolio by Technical Domain">
     <div class="container">
       <div class="filter-bar">
-        <span class="filter-label">Filter by Domain:</span>
+        <span class="filter-label">Filter Focus:</span>
         <div class="filter-buttons" role="toolbar" aria-label="Domain filter buttons">
-          <button type="button" class="filter-chip active" data-filter="all" id="filter-all">All Domains</button>
+          <button type="button" class="filter-chip active" data-filter="all" id="filter-all">All Areas</button>
           {{ range $r.skill_domains }}
           <button type="button" class="filter-chip" data-filter="{{ .id }}" id="filter-{{ .id }}">
             <span class="chip-code">{{ .code }}</span>
@@ -146,34 +237,45 @@
     <div class="container">
       <div class="section-header">
         <div>
-          <span class="section-eyebrow">01 / Career Record</span>
+          <span class="section-eyebrow">01 / Career Progression</span>
           <h2 class="section-title">Professional Experience</h2>
         </div>
-        <p class="section-subtitle">Production infrastructure operations, bare-metal hardware troubleshooting, and high-availability fleet maintenance.</p>
+        <p class="section-subtitle">Hyperscale data center hardware operations, university network infrastructure, and enterprise IT support.</p>
       </div>
 
-      <div class="timeline" id="experience-list">
+      <div class="timeline-track" id="experience-list">
         {{ range $index, $exp := $r.experience }}
         <article class="timeline-item" data-domains="{{ delimit $exp.domains " " }}">
-          <div class="timeline-meta">
-            <span class="timeline-period">{{ $exp.period }}</span>
-            <span class="timeline-location">{{ $exp.location }}</span>
-            {{ if $exp.current }}
-            <span class="status-indicator">Active Role</span>
-            {{ end }}
+          <div class="timeline-node" aria-hidden="true">
+            <span class="node-dot {{ if $exp.current }}node-active{{ end }}"></span>
           </div>
 
-          <div class="timeline-content">
-            <div class="timeline-title-row">
-              <h3 class="timeline-role">{{ $exp.role }}</h3>
-              <span class="timeline-company">{{ $exp.company }}</span>
+          <div class="timeline-card">
+            <div class="timeline-card-top">
+              <div class="timeline-role-group">
+                <div class="company-pill-row">
+                  <span class="timeline-company">{{ $exp.company }}</span>
+                  {{ if $exp.current }}
+                  <span class="status-indicator">Current Role</span>
+                  {{ end }}
+                </div>
+                <h3 class="timeline-role">{{ $exp.role }}</h3>
+              </div>
+
+              <div class="timeline-meta-group">
+                <span class="timeline-period">{{ $exp.period }}</span>
+                <span class="timeline-location">{{ $exp.location }}</span>
+              </div>
             </div>
+
             <p class="timeline-summary">{{ $exp.summary }}</p>
-            <ul class="timeline-bullets">
+
+            <ul class="timeline-bullets {{ if gt (len $exp.bullets) 6 }}bullets-two-col{{ end }}">
               {{ range $exp.bullets }}
               <li>{{ . }}</li>
               {{ end }}
             </ul>
+
             <div class="domain-tags no-print">
               {{ range $exp.domains }}
               <span class="domain-tag">{{ . }}</span>
@@ -194,19 +296,19 @@
           <span class="section-eyebrow">02 / Technical Specifications</span>
           <h2 class="section-title">Core Competencies &amp; Systems</h2>
         </div>
-        <p class="section-subtitle">Structured breakdown of physical layer, networking, Linux diagnostic, and operational capabilities.</p>
+        <p class="section-subtitle">Hands-on proficiency across physical layer hardware, optical &amp; enterprise networking, Linux/Windows deployment, and ITSM.</p>
       </div>
 
       <div class="domains-grid" id="domains-grid">
-        {{ range $r.skill_domains }}
-        <article class="domain-card" data-domains="{{ .id }}">
+        {{ range $index, $dom := $r.skill_domains }}
+        <article class="domain-card" data-domains="{{ $dom.id }}">
           <div class="domain-card-header">
-            <span class="domain-code">{{ .code }}</span>
-            <h3 class="domain-title">{{ .title }}</h3>
+            <span class="domain-code">{{ $dom.code }}</span>
+            <h3 class="domain-title">{{ $dom.title }}</h3>
           </div>
-          <p class="domain-description">{{ .description }}</p>
+          <p class="domain-description">{{ $dom.description }}</p>
           <ul class="skill-list">
-            {{ range .skills }}
+            {{ range $dom.skills }}
             <li class="skill-item">{{ . }}</li>
             {{ end }}
           </ul>
@@ -221,10 +323,10 @@
     <div class="container">
       <div class="section-header">
         <div>
-          <span class="section-eyebrow">03 / Applied Engineering</span>
-          <h2 class="section-title">Featured Initiatives &amp; Projects</h2>
+          <span class="section-eyebrow">03 / Applied Infrastructure Projects</span>
+          <h2 class="section-title">Featured Initiatives &amp; Rollouts</h2>
         </div>
-        <p class="section-subtitle">Selected technical workflows, documentation playbooks, and infrastructure projects.</p>
+        <p class="section-subtitle">Key operational tooling, campus-wide network hardware refreshes, VoIP migrations, and SaaS deployments.</p>
       </div>
 
       <div class="projects-grid" id="projects-grid">
@@ -252,77 +354,90 @@
     </div>
   </section>
 
-  <!-- Certifications & Education -->
-  <section class="section section-alt" id="credentials">
+  <!-- Education Section -->
+  <section class="section section-alt" id="education">
     <div class="container">
       <div class="section-header">
         <div>
-          <span class="section-eyebrow">04 / Credentials</span>
-          <h2 class="section-title">Certifications, Training &amp; Education</h2>
+          <span class="section-eyebrow">04 / Academic Foundation</span>
+          <h2 class="section-title">Education</h2>
         </div>
-        <p class="section-subtitle">Professional training, operational safety qualifications, and academic foundation.</p>
+        <p class="section-subtitle">Formal degrees in Information Technology, enterprise networking, systems administration, and security.</p>
       </div>
 
-      <div class="credentials-layout">
-        <div class="credentials-column">
-          <h3 class="column-heading">Certifications &amp; Training</h3>
-          <div class="credential-stack">
-            {{ range $r.certifications }}
-            <div class="credential-card">
-              <div class="credential-header">
-                <h4 class="credential-name">{{ .name }}</h4>
-                <span class="credential-badge">{{ .status }}</span>
-              </div>
-              <p class="credential-issuer">{{ .issuer }}</p>
-              <p class="credential-detail">{{ .detail }}</p>
-            </div>
-            {{ end }}
+      <div class="education-grid">
+        {{ range $r.education }}
+        <article class="education-card">
+          <div class="edu-icon-box no-print" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+            </svg>
           </div>
-        </div>
-
-        <div class="credentials-column">
-          <h3 class="column-heading">Education</h3>
-          <div class="credential-stack">
-            {{ range $r.education }}
-            <div class="credential-card">
-              <div class="credential-header">
-                <h4 class="credential-name">{{ .degree }}</h4>
-                <span class="credential-period">{{ .period }}</span>
-              </div>
-              <p class="credential-issuer">{{ .institution }}</p>
-              <p class="credential-detail">{{ .detail }}</p>
+          <div class="edu-body">
+            <div class="edu-header">
+              <span class="edu-period">{{ .period }}</span>
+              <span class="edu-institution">{{ .institution }}</span>
             </div>
-            {{ end }}
+            <h3 class="edu-degree">{{ .degree }}</h3>
+            <p class="edu-detail">{{ .detail }}</p>
           </div>
-        </div>
+        </article>
+        {{ end }}
       </div>
     </div>
   </section>
 
-  <!-- Contact & Footer Section -->
-  <section class="section contact-section no-print" id="contact">
+  <!-- Certifications & Licenses Grid -->
+  <section class="section" id="certifications">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <span class="section-eyebrow">05 / Verified Credentials</span>
+          <h2 class="section-title">Licenses &amp; Certifications ({{ len $r.certifications }})</h2>
+        </div>
+        <p class="section-subtitle">Industry certifications across Google IT Support, Linux (LPI), CompTIA Security+/Network+/A+/Project+/Cloud, ITIL v4, and UI Design.</p>
+      </div>
+
+      <div class="certs-grid">
+        {{ range $r.certifications }}
+        <article class="cert-card">
+          <div class="cert-top">
+            <span class="cert-issuer-pill">{{ .issuer }}</span>
+            <span class="cert-date">{{ .status }}</span>
+          </div>
+          <h3 class="cert-name">{{ .name }}</h3>
+          <p class="cert-detail">{{ .detail }}</p>
+        </article>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section section-alt contact-section no-print" id="contact">
     <div class="container">
       <div class="contact-box">
         <div class="contact-copy">
-          <span class="section-eyebrow">05 / Connect</span>
-          <h2 class="section-title">Get in Touch</h2>
+          <span class="section-eyebrow">06 / Connect</span>
+          <h2 class="section-title">Let's Connect</h2>
           <p class="contact-description">
-            Interested in connecting regarding data center infrastructure, bare-metal hardware engineering, or fleet operations? Reach out directly via email or LinkedIn.
+            Interested in connecting regarding data center infrastructure, enterprise networking, or IT systems operations? Reach out via email or LinkedIn.
           </p>
         </div>
 
         <div class="contact-links">
+          <a href="{{ $r.profile.contact.linkedin }}" target="_blank" rel="noopener noreferrer" class="contact-item" id="contact-linkedin-link">
+            <span class="contact-item-label">LinkedIn</span>
+            <span class="contact-item-value">linkedin.com/in/neal-raulston</span>
+          </a>
           <a href="mailto:{{ $r.profile.contact.email }}" class="contact-item" id="contact-email-link">
             <span class="contact-item-label">Email</span>
             <span class="contact-item-value">{{ $r.profile.contact.email }}</span>
           </a>
-          <a href="{{ $r.profile.contact.linkedin }}" target="_blank" rel="noopener noreferrer" class="contact-item" id="contact-linkedin-link">
-            <span class="contact-item-label">LinkedIn</span>
-            <span class="contact-item-value">{{ $r.profile.contact.linkedin }}</span>
-          </a>
           <a href="{{ $r.profile.contact.github }}" target="_blank" rel="noopener noreferrer" class="contact-item" id="contact-github-link">
             <span class="contact-item-label">GitHub</span>
-            <span class="contact-item-value">{{ $r.profile.contact.github }}</span>
+            <span class="contact-item-value">github.com/nraulston</span>
           </a>
         </div>
       </div>
@@ -333,53 +448,9 @@
 <footer class="site-footer no-print">
   <div class="container footer-inner">
     <p class="footer-copy">
-      <strong>{{ $r.profile.name }}</strong> · Built with <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> Flat-File CMS · Ready for GitHub &amp; <a href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer">Netlify</a>
+      <strong>{{ $r.profile.name }}</strong> · {{ $r.profile.headline }} at {{ $r.profile.organization }} · Built with <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer">Netlify</a>
     </p>
-    <p class="footer-note">Edit <code>data/resume.yaml</code> to customize all content on this page.</p>
+    <p class="footer-note">{{ $r.profile.contact.location_display }}</p>
   </div>
 </footer>
-
-<!-- Slide-over Drawer: Flat-File CMS & Netlify Publishing Guide -->
-<aside class="cms-drawer no-print" id="cms-guide-drawer" aria-hidden="true" aria-labelledby="cms-drawer-title">
-  <div class="cms-drawer-backdrop" id="cms-drawer-backdrop"></div>
-  <div class="cms-drawer-panel" role="dialog" aria-modal="true">
-    <div class="cms-drawer-header">
-      <div>
-        <span class="section-eyebrow">Hugo + GitHub + Netlify Workflow</span>
-        <h2 class="cms-drawer-title" id="cms-drawer-title">How to Edit &amp; Publish Your Site</h2>
-      </div>
-      <button type="button" class="drawer-close-btn" id="cms-drawer-close" aria-label="Close guide">✕</button>
-    </div>
-
-    <div class="cms-drawer-body">
-      <div class="guide-step">
-        <span class="guide-step-num">Step 1</span>
-        <h3>Edit Your Flat-File Resume Data</h3>
-        <p>All text, experience bullets, skills, and links live in a single clean YAML file—no HTML or database required:</p>
-        <pre class="code-block"><code>~/hugo-resume-portfolio/data/resume.yaml</code></pre>
-        <p>Site-level settings (like your final domain name) live in <code>hugo.toml</code>.</p>
-      </div>
-
-      <div class="guide-step">
-        <span class="guide-step-num">Step 2</span>
-        <h3>Push Your Repo to GitHub</h3>
-        <p>Create a new repository on GitHub (e.g., <code>hugo-resume-portfolio</code>), then push from your terminal:</p>
-        <pre class="code-block"><code>git remote add origin https://github.com/YOUR_USERNAME/hugo-resume-portfolio.git
-git branch -M main
-git push -u origin main</code></pre>
-      </div>
-
-      <div class="guide-step">
-        <span class="guide-step-num">Step 3</span>
-        <h3>Connect Netlify for Instant Publishing</h3>
-        <ol class="guide-list">
-          <li>Log in to <a href="https://app.netlify.com/" target="_blank" rel="noopener noreferrer">app.netlify.com</a> and click <strong>Add new site → Import an existing project</strong>.</li>
-          <li>Select <strong>GitHub</strong> and pick your repository.</li>
-          <li>Netlify automatically reads the included <code>netlify.toml</code> file (which configures <code>hugo --gc --minify</code> and publishes <code>public/</code>).</li>
-          <li>Click <strong>Deploy site</strong>. Every future <code>git push</code> will automatically update your live website in seconds!</li>
-        </ol>
-      </div>
-    </div>
-  </div>
-</aside>
 {{ end }}
