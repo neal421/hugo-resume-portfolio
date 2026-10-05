@@ -1,0 +1,385 @@
+{{ define "main" }}
+{{ $r := hugo.Data.resume }}
+
+<!-- Top Navigation Header -->
+<header class="site-header no-print" id="site-header">
+  <div class="container header-inner">
+    <a href="#top" class="brand-link" id="brand-home-link" aria-label="Neal Raulston Home">
+      <span class="brand-monogram">{{ $r.profile.initials }}</span>
+      <span class="brand-text">
+        <span class="brand-name">{{ $r.profile.name }}</span>
+        <span class="brand-role">{{ $r.profile.headline }} · {{ $r.profile.organization }}</span>
+      </span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary Navigation">
+      <a href="#experience" class="nav-link" id="nav-experience">Experience</a>
+      <a href="#domains" class="nav-link" id="nav-domains">Technical Domains</a>
+      <a href="#projects" class="nav-link" id="nav-projects">Initiatives</a>
+      <a href="#credentials" class="nav-link" id="nav-credentials">Credentials</a>
+      <a href="#contact" class="nav-link" id="nav-contact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <button type="button" class="btn-ghost" id="cms-guide-toggle" aria-expanded="false" aria-controls="cms-guide-drawer" title="How to edit and deploy this Hugo site">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+        </svg>
+        <span>CMS Guide</span>
+      </button>
+
+      <button type="button" class="btn-secondary" id="print-resume-btn" title="Print or save formatted PDF resume">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <polyline points="6 9 6 2 18 2 18 9"></polyline>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+          <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+        <span>Print / PDF</span>
+      </button>
+
+      <button type="button" class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle color theme" title="Switch between dark and light mode">
+        <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main-content">
+  <!-- Hero / Profile Section -->
+  <section class="hero-section" id="top">
+    <div class="container">
+      <div class="hero-layout">
+        <div class="hero-primary">
+          <div class="hero-meta-line">
+            <span class="mono-label">{{ $r.profile.organization }}</span>
+            <span class="meta-separator" aria-hidden="true">/</span>
+            <span class="mono-label">{{ $r.profile.availability }}</span>
+            <span class="meta-separator" aria-hidden="true">/</span>
+            <span class="mono-label">{{ $r.profile.location }}</span>
+          </div>
+
+          <h1 class="hero-title">{{ $r.profile.name }}</h1>
+          <p class="hero-role">{{ $r.profile.headline }} <span class="role-org">at {{ $r.profile.organization }}</span></p>
+          <p class="hero-tagline">{{ $r.profile.tagline }}</p>
+          <p class="hero-summary">{{ $r.profile.summary }}</p>
+
+          <!-- Print-only contact row -->
+          <div class="print-contact-row print-only">
+            <span>{{ $r.profile.contact.email }}</span>
+            <span>·</span>
+            <span>{{ $r.profile.contact.linkedin }}</span>
+            <span>·</span>
+            <span>{{ $r.profile.contact.github }}</span>
+            <span>·</span>
+            <span>{{ $r.profile.contact.location_display }}</span>
+          </div>
+
+          <div class="hero-cta-row no-print">
+            <a href="#experience" class="btn-primary" id="hero-explore-btn">
+              <span>View Experience &amp; Specs</span>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="#contact" class="btn-secondary" id="hero-contact-btn">Get in Touch</a>
+            <button type="button" class="btn-ghost" id="copy-email-hero-btn" data-email="{{ $r.profile.contact.email }}">
+              <span class="copy-label">{{ $r.profile.contact.email }}</span>
+              <span class="copy-badge" id="copy-email-feedback">Copy</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Operational Focus Highlights -->
+        <aside class="hero-highlights" aria-label="Core Operational Areas">
+          {{ range $index, $item := $r.highlights }}
+          <div class="highlight-card">
+            <div class="highlight-header">
+              <span class="highlight-index">0{{ add $index 1 }}</span>
+              <span class="highlight-metric">{{ $item.metric }}</span>
+            </div>
+            <h2 class="highlight-title">{{ $item.label }}</h2>
+            <p class="highlight-detail">{{ $item.detail }}</p>
+          </div>
+          {{ end }}
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Domain Filter Bar -->
+  <section class="filter-bar-section no-print" aria-label="Filter Portfolio by Technical Domain">
+    <div class="container">
+      <div class="filter-bar">
+        <span class="filter-label">Filter by Domain:</span>
+        <div class="filter-buttons" role="toolbar" aria-label="Domain filter buttons">
+          <button type="button" class="filter-chip active" data-filter="all" id="filter-all">All Domains</button>
+          {{ range $r.skill_domains }}
+          <button type="button" class="filter-chip" data-filter="{{ .id }}" id="filter-{{ .id }}">
+            <span class="chip-code">{{ .code }}</span>
+            <span>{{ .title }}</span>
+          </button>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work Experience Timeline -->
+  <section class="section" id="experience">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <span class="section-eyebrow">01 / Career Record</span>
+          <h2 class="section-title">Professional Experience</h2>
+        </div>
+        <p class="section-subtitle">Production infrastructure operations, bare-metal hardware troubleshooting, and high-availability fleet maintenance.</p>
+      </div>
+
+      <div class="timeline" id="experience-list">
+        {{ range $index, $exp := $r.experience }}
+        <article class="timeline-item" data-domains="{{ delimit $exp.domains " " }}">
+          <div class="timeline-meta">
+            <span class="timeline-period">{{ $exp.period }}</span>
+            <span class="timeline-location">{{ $exp.location }}</span>
+            {{ if $exp.current }}
+            <span class="status-indicator">Active Role</span>
+            {{ end }}
+          </div>
+
+          <div class="timeline-content">
+            <div class="timeline-title-row">
+              <h3 class="timeline-role">{{ $exp.role }}</h3>
+              <span class="timeline-company">{{ $exp.company }}</span>
+            </div>
+            <p class="timeline-summary">{{ $exp.summary }}</p>
+            <ul class="timeline-bullets">
+              {{ range $exp.bullets }}
+              <li>{{ . }}</li>
+              {{ end }}
+            </ul>
+            <div class="domain-tags no-print">
+              {{ range $exp.domains }}
+              <span class="domain-tag">{{ . }}</span>
+              {{ end }}
+            </div>
+          </div>
+        </article>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Domains & Skills Matrix -->
+  <section class="section section-alt" id="domains">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <span class="section-eyebrow">02 / Technical Specifications</span>
+          <h2 class="section-title">Core Competencies &amp; Systems</h2>
+        </div>
+        <p class="section-subtitle">Structured breakdown of physical layer, networking, Linux diagnostic, and operational capabilities.</p>
+      </div>
+
+      <div class="domains-grid" id="domains-grid">
+        {{ range $r.skill_domains }}
+        <article class="domain-card" data-domains="{{ .id }}">
+          <div class="domain-card-header">
+            <span class="domain-code">{{ .code }}</span>
+            <h3 class="domain-title">{{ .title }}</h3>
+          </div>
+          <p class="domain-description">{{ .description }}</p>
+          <ul class="skill-list">
+            {{ range .skills }}
+            <li class="skill-item">{{ . }}</li>
+            {{ end }}
+          </ul>
+        </article>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects & Operational Initiatives -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <span class="section-eyebrow">03 / Applied Engineering</span>
+          <h2 class="section-title">Featured Initiatives &amp; Projects</h2>
+        </div>
+        <p class="section-subtitle">Selected technical workflows, documentation playbooks, and infrastructure projects.</p>
+      </div>
+
+      <div class="projects-grid" id="projects-grid">
+        {{ range $r.projects }}
+        <article class="project-card" data-domains="{{ .domain }}">
+          <div class="project-top">
+            <span class="project-category">{{ .category }}</span>
+            <span class="project-period">{{ .period }}</span>
+          </div>
+          <h3 class="project-title">{{ .title }}</h3>
+          <p class="project-summary">{{ .summary }}</p>
+          <ul class="project-outcomes">
+            {{ range .outcomes }}
+            <li>{{ . }}</li>
+            {{ end }}
+          </ul>
+          <div class="project-tags">
+            {{ range .tags }}
+            <span class="tech-tag">{{ . }}</span>
+            {{ end }}
+          </div>
+        </article>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications & Education -->
+  <section class="section section-alt" id="credentials">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <span class="section-eyebrow">04 / Credentials</span>
+          <h2 class="section-title">Certifications, Training &amp; Education</h2>
+        </div>
+        <p class="section-subtitle">Professional training, operational safety qualifications, and academic foundation.</p>
+      </div>
+
+      <div class="credentials-layout">
+        <div class="credentials-column">
+          <h3 class="column-heading">Certifications &amp; Training</h3>
+          <div class="credential-stack">
+            {{ range $r.certifications }}
+            <div class="credential-card">
+              <div class="credential-header">
+                <h4 class="credential-name">{{ .name }}</h4>
+                <span class="credential-badge">{{ .status }}</span>
+              </div>
+              <p class="credential-issuer">{{ .issuer }}</p>
+              <p class="credential-detail">{{ .detail }}</p>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+
+        <div class="credentials-column">
+          <h3 class="column-heading">Education</h3>
+          <div class="credential-stack">
+            {{ range $r.education }}
+            <div class="credential-card">
+              <div class="credential-header">
+                <h4 class="credential-name">{{ .degree }}</h4>
+                <span class="credential-period">{{ .period }}</span>
+              </div>
+              <p class="credential-issuer">{{ .institution }}</p>
+              <p class="credential-detail">{{ .detail }}</p>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Footer Section -->
+  <section class="section contact-section no-print" id="contact">
+    <div class="container">
+      <div class="contact-box">
+        <div class="contact-copy">
+          <span class="section-eyebrow">05 / Connect</span>
+          <h2 class="section-title">Get in Touch</h2>
+          <p class="contact-description">
+            Interested in connecting regarding data center infrastructure, bare-metal hardware engineering, or fleet operations? Reach out directly via email or LinkedIn.
+          </p>
+        </div>
+
+        <div class="contact-links">
+          <a href="mailto:{{ $r.profile.contact.email }}" class="contact-item" id="contact-email-link">
+            <span class="contact-item-label">Email</span>
+            <span class="contact-item-value">{{ $r.profile.contact.email }}</span>
+          </a>
+          <a href="{{ $r.profile.contact.linkedin }}" target="_blank" rel="noopener noreferrer" class="contact-item" id="contact-linkedin-link">
+            <span class="contact-item-label">LinkedIn</span>
+            <span class="contact-item-value">{{ $r.profile.contact.linkedin }}</span>
+          </a>
+          <a href="{{ $r.profile.contact.github }}" target="_blank" rel="noopener noreferrer" class="contact-item" id="contact-github-link">
+            <span class="contact-item-label">GitHub</span>
+            <span class="contact-item-value">{{ $r.profile.contact.github }}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer no-print">
+  <div class="container footer-inner">
+    <p class="footer-copy">
+      <strong>{{ $r.profile.name }}</strong> · Built with <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> Flat-File CMS · Ready for GitHub &amp; <a href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer">Netlify</a>
+    </p>
+    <p class="footer-note">Edit <code>data/resume.yaml</code> to customize all content on this page.</p>
+  </div>
+</footer>
+
+<!-- Slide-over Drawer: Flat-File CMS & Netlify Publishing Guide -->
+<aside class="cms-drawer no-print" id="cms-guide-drawer" aria-hidden="true" aria-labelledby="cms-drawer-title">
+  <div class="cms-drawer-backdrop" id="cms-drawer-backdrop"></div>
+  <div class="cms-drawer-panel" role="dialog" aria-modal="true">
+    <div class="cms-drawer-header">
+      <div>
+        <span class="section-eyebrow">Hugo + GitHub + Netlify Workflow</span>
+        <h2 class="cms-drawer-title" id="cms-drawer-title">How to Edit &amp; Publish Your Site</h2>
+      </div>
+      <button type="button" class="drawer-close-btn" id="cms-drawer-close" aria-label="Close guide">✕</button>
+    </div>
+
+    <div class="cms-drawer-body">
+      <div class="guide-step">
+        <span class="guide-step-num">Step 1</span>
+        <h3>Edit Your Flat-File Resume Data</h3>
+        <p>All text, experience bullets, skills, and links live in a single clean YAML file—no HTML or database required:</p>
+        <pre class="code-block"><code>~/hugo-resume-portfolio/data/resume.yaml</code></pre>
+        <p>Site-level settings (like your final domain name) live in <code>hugo.toml</code>.</p>
+      </div>
+
+      <div class="guide-step">
+        <span class="guide-step-num">Step 2</span>
+        <h3>Push Your Repo to GitHub</h3>
+        <p>Create a new repository on GitHub (e.g., <code>hugo-resume-portfolio</code>), then push from your terminal:</p>
+        <pre class="code-block"><code>git remote add origin https://github.com/YOUR_USERNAME/hugo-resume-portfolio.git
+git branch -M main
+git push -u origin main</code></pre>
+      </div>
+
+      <div class="guide-step">
+        <span class="guide-step-num">Step 3</span>
+        <h3>Connect Netlify for Instant Publishing</h3>
+        <ol class="guide-list">
+          <li>Log in to <a href="https://app.netlify.com/" target="_blank" rel="noopener noreferrer">app.netlify.com</a> and click <strong>Add new site → Import an existing project</strong>.</li>
+          <li>Select <strong>GitHub</strong> and pick your repository.</li>
+          <li>Netlify automatically reads the included <code>netlify.toml</code> file (which configures <code>hugo --gc --minify</code> and publishes <code>public/</code>).</li>
+          <li>Click <strong>Deploy site</strong>. Every future <code>git push</code> will automatically update your live website in seconds!</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</aside>
+{{ end }}

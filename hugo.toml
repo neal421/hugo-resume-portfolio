@@ -1,0 +1,20 @@
+baseURL = "https://nealraulston.netlify.app/"
+locale = "en-us"
+title = "Neal Raulston | Data Center Technician & Infrastructure Specialist"
+enableRobotsTXT = true
+disableKinds = ["taxonomy", "term"]
+
+[params]
+  author = "Neal Raulston"
+  role = "Data Center Technician"
+  company = "Google"
+  location = "United States"
+  description = "Personal resume and technical portfolio of Neal Raulston — Data Center Technician at Google specializing in hyperscale server hardware, optical networking, fleet diagnostics, and mission-critical infrastructure operations."
+  github = "https://github.com/nraulston"
+  linkedin = "https://www.linkedin.com/in/neal-raulston"
+  email = "neal.raulston@example.com"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

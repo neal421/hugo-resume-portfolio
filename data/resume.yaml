@@ -1,0 +1,178 @@
+# =============================================================================
+# FLAT-FILE RESUME & PORTFOLIO DATA (data/resume.yaml)
+# =============================================================================
+# Edit any field in this file to update your website and printable PDF resume.
+# NOTE: Because this repository is deployed publicly via GitHub + Netlify,
+# keep all descriptions public-safe (avoid internal code names, internal tool
+# names, or confidential metrics).
+# =============================================================================
+
+profile:
+  name: "Neal Raulston"
+  initials: "NR"
+  headline: "Data Center Technician"
+  organization: "Google"
+  location: "United States"
+  availability: "Infrastructure Operations & Hardware Systems"
+  tagline: "Maintaining and scaling mission-critical compute, high-speed optical networking, and bare-metal fleet reliability at hyperscale."
+  summary: >
+    Hands-on Data Center Technician at Google specializing in bare-metal server lifecycle
+    operations, high-density optical network infrastructure, and systematic hardware
+    diagnostics across large-scale production fleets. Experienced in root-cause failure
+    analysis, Linux-based hardware validation, structured cabling, and collaborating
+    with hardware and network engineering teams to maximize fleet uptime and operational safety.
+  contact:
+    email: "neal.raulston@example.com"
+    linkedin: "https://www.linkedin.com/in/neal-raulston"
+    github: "https://github.com/nraulston"
+    location_display: "United States"
+
+# Key operational focus areas shown in the summary bar
+highlights:
+  - metric: "Hyperscale Fleet"
+    label: "Server & Rack Lifecycle Operations"
+    detail: "Deployment, burn-in validation, triage, and decommissioning of high-density compute and storage racks."
+  - metric: "Layer 1 / Layer 2"
+    label: "Optical & Copper Networking"
+    detail: "Single-mode/multi-mode fiber installation, OTDR/light-level verification, transceiver diagnostics, and spine-leaf cabling."
+  - metric: "Linux & CLI"
+    label: "Hardware & System Diagnostics"
+    detail: "Automated diagnostic workflows, kernel log analysis, BMC/out-of-band troubleshooting, and script-assisted repairs."
+
+# =============================================================================
+# WORK EXPERIENCE TIMELINE
+# =============================================================================
+# Each item supports `domains` tags so visitors can filter your experience by
+# technical area (hardware, networking, linux, operations).
+experience:
+  - role: "Data Center Technician"
+    company: "Google"
+    location: "United States"
+    period: "Present"
+    current: true
+    domains: ["hardware", "networking", "linux", "operations"]
+    summary: "Execute day-to-day physical and logical operations across hyperscale data center production floors, ensuring high availability for cloud, compute, and AI/ML infrastructure."
+    bullets:
+      - "Diagnose and resolve complex bare-metal server faults across CPU, DIMM/memory subsystems, NVMe/SSD storage arrays, motherboards, PSUs, and accelerator hardware within strict SLA windows."
+      - "Deploy, cable, and validate new compute and network racks from initial placement through power-on self-test, firmware verification, and production handoff."
+      - "Troubleshoot high-speed optical interconnects (SMF/MMF, MPO/MTP, LC), performing optical power-meter testing, scope inspection, and transceiver replacement to maintain low-latency fabric links."
+      - "Use Linux command-line diagnostic utilities, system logs, and out-of-band management interfaces to isolate intermittent hardware vs. software anomalies."
+      - "Partner with site operations, facilities engineers, and remote network engineers during scheduled maintenance windows, power events, and large-scale fleet upgrades."
+      - "Maintain strict adherence to electrical safety, ESD mitigation, physical security, and data-bearing device sanitization standards."
+
+  - role: "Infrastructure & IT Systems Technician (Sample Previous Role — Edit Me)"
+    company: "Previous Organization"
+    location: "United States"
+    period: "Prior Experience"
+    current: false
+    domains: ["hardware", "networking", "operations"]
+    summary: "Managed enterprise hardware lifecycle, structured network cabling, and systems administration across distributed environments."
+    bullets:
+      - "Performed hardware break/fix, workstation and server provisioning, and preventative maintenance across critical business systems."
+      - "Installed, terminated, and certified structured Cat6/Cat6A copper and fiber patch panels, switches, and rack PDUs."
+      - "Documented standard operating procedures (SOPs), rack elevation diagrams, and asset inventory tracking to streamline technician onboarding."
+
+# =============================================================================
+# TECHNICAL SKILLS & DOMAINS
+# =============================================================================
+skill_domains:
+  - id: "hardware"
+    title: "Server Hardware & Rack Infrastructure"
+    code: "DOM-01"
+    description: "End-to-end physical layer lifecycle, component-level fault isolation, and high-density rack integration."
+    skills:
+      - "Bare-Metal Server Triage (CPU, ECC RAM, NVMe, PCIe, Motherboard)"
+      - "High-Density Compute & Storage Rack Deployment"
+      - "Accelerator / GPU Tray Hardware Maintenance"
+      - "Rack PDU Power Balancing & Thermal Airflow Management"
+      - "Out-of-Band / BMC Hardware Diagnostics"
+      - "Data-Bearing Device Handling & Secure Decommissioning"
+
+  - id: "networking"
+    title: "Optical Fiber & Network Fabric"
+    code: "DOM-02"
+    description: "Physical layer connectivity, optical link budget verification, and structured data center cabling."
+    skills:
+      - "Single-Mode (SMF) & Multi-Mode (MMF) Fiber Optics"
+      - "MPO/MTP Trunking & LC Duplex Patching"
+      - "Optical Power Meter, Light Source & Fiber Scope Inspection"
+      - "QSFP-DD / OSFP / SFP+ Optical Transceiver Troubleshooting"
+      - "Spine-Leaf Topology & Top-of-Rack (ToR) Switch Cabling"
+      - "Link Flap & Bit-Error-Rate (BER) Physical Layer Isolation"
+
+  - id: "linux"
+    title: "Linux Systems, CLI & Automation"
+    code: "DOM-03"
+    description: "Operating system diagnostics, log inspection, and tooling for rapid fleet troubleshooting."
+    skills:
+      - "Linux CLI Administration & Bash Shell Workflows"
+      - "Kernel & Hardware Log Analysis (dmesg, syslog, SMART, MCE)"
+      - "Network Interface & Routing Verification (ip, ethtool, ping, traceroute)"
+      - "PXE Boot, Firmware / BIOS / BMC Provisioning"
+      - "Git Version Control & Static Site / Documentation Workflows"
+      - "Python & Shell Scripting for Diagnostic Automation"
+
+  - id: "operations"
+    title: "Data Center Operations & Safety"
+    code: "DOM-04"
+    description: "Disciplined execution in mission-critical environments with a focus on safety, documentation, and continuous improvement."
+    skills:
+      - "SLA-Driven Ticket Queue Triage & Prioritization"
+      - "Change Management & Maintenance Window Execution"
+      - "ESD Protection, LOTO Awareness & Data Center EHS Standards"
+      - "Root-Cause Analysis (RCA) & Defect Escalation"
+      - "SOP Authoring & Peer Technician Mentorship"
+      - "Inventory Auditing & Asset Lifecycle Tracking"
+
+# =============================================================================
+# FEATURED PROJECTS & INITIATIVES
+# =============================================================================
+projects:
+  - title: "High-Density Rack Deployment & Burn-In Workflow"
+    category: "Fleet Infrastructure"
+    domain: "hardware"
+    period: "Operational Initiative"
+    summary: "Standardized physical inspection, cable dressing, and initial power-up verification checklists for incoming compute racks to reduce early-life link and thermal issues."
+    outcomes:
+      - "Reduced post-deployment cabling rework through structured pre-flight optical inspection and port-mapping verification."
+      - "Documented repeatable troubleshooting steps for common burn-in failures across memory, storage, and optical links."
+    tags: ["Rack Integration", "Optical Verification", "Burn-In Testing", "SOPs"]
+
+  - title: "Optical Link Triage & Transceiver Health Playbook"
+    category: "Network Reliability"
+    domain: "networking"
+    period: "Technical Documentation"
+    summary: "Compiled a quick-reference field methodology for isolating marginal optical links, dirty fiber end-faces, and failing high-speed transceivers on the data center floor."
+    outcomes:
+      - "Streamlined handoffs between floor technicians and remote network engineers with standardized light-level and loopback test reporting."
+      - "Improved first-time fix rates on intermittent packet-loss and link-flap tickets."
+    tags: ["Fiber Optics", "QSFP/OSFP", "Layer 1 Diagnostics", "Network Operations"]
+
+  - title: "Hugo + Netlify Flat-File Portfolio Architecture"
+    category: "Personal Engineering"
+    domain: "linux"
+    period: "2026"
+    summary: "Designed and deployed a fast, zero-database personal resume and technical portfolio powered by Hugo static site generation, YAML data schemas, and continuous deployment via GitHub and Netlify."
+    outcomes:
+      - "Sub-second page loads with 100/100 Lighthouse performance and accessibility targets."
+      - "Single-source-of-truth YAML configuration (`data/resume.yaml`) that simultaneously drives the interactive web portfolio and a print-ready PDF resume."
+    tags: ["Hugo", "YAML", "Git / GitHub", "Netlify CI/CD", "Vanilla CSS"]
+
+# =============================================================================
+# CERTIFICATIONS, TRAINING & EDUCATION
+# =============================================================================
+certifications:
+  - name: "Hyperscale Data Center Operations & Safety Training"
+    issuer: "Enterprise / Industry Standard"
+    status: "Active"
+    detail: "High-density hardware handling, electrical safety awareness, fiber optic inspection, and secure media handling."
+  - name: "CompTIA Linux+ / Server+ / Network+ (Optional — Edit in data/resume.yaml)"
+    issuer: "CompTIA / Industry Certification"
+    status: "Customizable"
+    detail: "Replace or add your specific certifications, licenses, or coursework in data/resume.yaml."
+
+education:
+  - degree: "Technical Education / Degree (Edit in data/resume.yaml)"
+    institution: "University or Technical Institute"
+    period: "Year – Year"
+    detail: "Information Technology, Computer Systems, Electronics, or related coursework and hands-on lab training."
