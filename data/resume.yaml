@@ -13,14 +13,14 @@ profile:
   availability: "Data Center Infrastructure · Networking · IT Systems"
   tagline: "Experienced IT & Data Center Infrastructure professional with 12+ years across hyperscale fleet operations, enterprise networking, and systems administration."
   summary: >
-    Motivated, team-oriented IT and Data Center professional holding a Bachelor's and Associate's
-    degree in Information Technology alongside industry certifications across Linux, networking,
-    cloud, security, and IT service management. Currently serving as a Data Center Technician at
-    Google, combining deep hands-on expertise in bare-metal server hardware, single-mode/multi-mode
-    fiber optics, and Layer 2/Layer 3 switching with a passion for workflow automation, clear
-    documentation, and mentoring others.
+    Experienced IT professional. I am a team player and highly motivated. I hold an Associate's
+    degree in Information Technology and a Bachelor's degree in Information Technology from
+    Western Governors University, along with 11 industry IT certifications. Currently serving as
+    a Data Center Technician at Google, my focus is on data center infrastructure, networking,
+    security, and cloud—and I enjoy educating and supporting others while keeping systems
+    reliable, safe, and secure.
   contact:
-    email: "neal.raulston@gmail.com"
+    email: "neal.raulston@example.com"
     linkedin: "https://www.linkedin.com/in/neal-raulston/"
     github: "https://github.com/nraulston"
     location_display: "Bridgeport, Alabama, United States"
@@ -29,25 +29,25 @@ profile:
 highlights:
   - metric: "Hyperscale & Enterprise"
     label: "Data Center & Server Infrastructure"
-    detail: "3+ years in hyperscale Google data center operations plus 10+ years in enterprise networking and systems support."
+    detail: "3+ years in hyperscale Google data center operations plus 10+ years in university networking and IT systems."
   - metric: "Layer 1 / Layer 2 / Layer 3"
     label: "Optical Fiber, Switching & Wireless"
-    detail: "Single-mode & multi-mode fiber, Cat6 ethernet, L2/L3 switches, Aruba enterprise Wi-Fi, and VoIP infrastructure."
+    detail: "Single-mode & multi-mode fiber, Cat 6 ethernet, Layer 2/Layer 3 switches, Aruba Wi-Fi, and VoIP infrastructure."
   - metric: "B.S. IT + 11 Certs"
-    label: "Certified Systems & Linux Professional"
-    detail: "WGU B.S. in Information Technology, LPI Linux Essentials, CompTIA Security+/Network+/A+/Project+/Cloud, and ITIL v4."
+    label: "Certified Systems & Network Professional"
+    detail: "WGU B.S. in Information Technology, Google IT Support, LPI Linux Essentials, CompTIA Security+/Network+/A+/Project+/Cloud, and ITIL v4."
 
 # =============================================================================
 # WORK EXPERIENCE TIMELINE
 # =============================================================================
 experience:
   - role: "Datacenter Technician"
-    company: "Google"
-    location: "Bridgeport, Alabama · On-site"
+    company: "Google · Full-time"
+    location: "Bridgeport, Alabama, United States · On-site"
     period: "Jul 2023 – Present"
     current: true
     domains: ["hardware", "networking", "linux", "operations"]
-    summary: "Execute mission-critical physical and logical infrastructure operations across hyperscale data center production floors."
+    summary: "Execute mission-critical physical and logical Data Center Infrastructure operations across hyperscale production floors."
     bullets:
       - "Lead and coordinate site-wide hardware upgrade initiatives, designing automated tracking spreadsheets, re-inventory intake forms, and dispatch notifications to streamline multi-cluster fleet upgrades."
       - "Diagnose and resolve complex bare-metal server hardware faults across CPUs, ECC memory, NVMe/SSD storage arrays, motherboards, PSUs, and accelerator trays within strict SLA windows."
@@ -56,42 +56,56 @@ experience:
       - "Use Linux command-line diagnostics and out-of-band management tools to isolate intermittent hardware, firmware, and link-layer issues."
 
   - role: "Information Technology Network Technician"
-    company: "The University of the South"
-    location: "Sewanee, Tennessee · On-site"
-    period: "Aug 2021 – Jul 2023"
+    company: "The University of the South · Full-time"
+    location: "Sewanee, Tennessee, United States · On-site"
+    period: "Aug 2021 – Jul 2023 · 2 yrs"
     current: false
     domains: ["networking", "hardware", "linux", "operations"]
-    summary: "Partnered with the Strategic Digital Infrastructure team to plan, monitor, and maintain campus-wide enterprise data and voice networks."
+    summary: "Planned, monitored, and maintained campus-wide data and voice networks, enterprise switching, fiber optics, and endpoint deployment platforms."
     bullets:
-      - "Installed, maintained, diagnosed, repaired, and troubleshot Layer 2 and Layer 3 switches, Aruba wireless access points, VoIP phones, Cat6 ethernet, single-mode fiber (SMF), and multi-mode fiber (MMF)."
-      - "Served as backup to the university's Network Engineer, performing regular site surveys, network quality/performance assessments, and system optimization recommendations."
-      - "Built scripts, maintained infrastructure, and deployed software packages for both Microsoft Deployment Toolkit (MDT) on Windows Server and Jamf Pro MDM for Apple devices."
-      - "Partnered with Facilities Management to locate and trace underground campus fiber and copper network/phone trunks."
-      - "Supported help desk personnel with complex network/voice escalations and maintained detailed work records in the KACE ticketing system."
+      - "Work with the Strategic Digital Infrastructure team to plan, monitor, and maintain the university's network systems which include data and voice."
+      - "Install, maintain, diagnose, repair, modify, and troubleshoot communication equipment such as Layer 2 switches, Layer 3 switches, wireless access points, VoIP phones, Cat 6 ethernet, single-mode fiber, and multimode fiber."
+      - "Support help desk personnel in identifying and resolving issues with network components as well as voice network issues."
+      - "Perform regular site surveys and network assessments."
+      - "Develop reports on quality and performance of networks."
+      - "Provide recommendations on system enhancements for optimization."
+      - "Work with Facilities Management to locate underground university network and phone cables."
+      - "Maintain detailed record of work completed in KACE help desk system."
+      - "Provide remote network support for faculty, staff, and students on and off campus."
+      - "Serve as backup position for the university's network engineer."
+      - "Setup, maintain, provide scripts, and deploy software for Microsoft Deployment Toolkit (MDT) on Microsoft Server."
+      - "Setup, maintain, provide scripts, and deploy packages for JAMF mobile device management on Apple devices."
 
   - role: "Information Technology Help Desk Technician"
-    company: "The University of the South"
-    location: "Sewanee, Tennessee · On-site"
-    period: "Jan 2016 – Dec 2021"
+    company: "The University of the South · Full-time"
+    location: "Sewanee, Tennessee, United States · On-site"
+    period: "Jan 2016 – Dec 2021 · 6 yrs"
     current: false
     domains: ["hardware", "operations", "linux"]
-    summary: "Delivered technical support, workstation deployment, and systems troubleshooting for faculty, staff, and students on and off campus."
+    summary: "Provided comprehensive hardware, software, Windows Server, and VMware technical support for faculty, staff, students, and community members."
     bullets:
-      - "Troubleshot hardware, software, Windows Server, and VMware environments to identify and remediate root-cause technical issues."
-      - "Imaged, configured, and deployed campus workstations and managed full ticket lifecycles and escalations in the KACE help desk system."
-      - "Documented technical remediation playbooks and built strong, trusted relationships across faculty, staff, and students through calm, clear communication."
+      - "Troubleshoot systems and work with users to determine needed hardware or software changes."
+      - "Document all technical issues and highlight steps to remediate problems."
+      - "Display exceptional people skills and maintain calm demeanor during every phone call."
+      - "Create help desk tickets for all issues and escalate tickets when appropriate."
+      - "Provide remote computer support for users on and off campus."
+      - "Image and configure computers that can be re-deployed."
+      - "Build strong relationships with faculty, staff, students, and community members."
+      - "Work as a team with others and lead by example."
+      - "Maintain clean and orderly workstation."
 
   - role: "Information Technology Specialist"
-    company: "1st Bytes Computer Service"
-    location: "Chattanooga, Tennessee · On-site"
-    period: "Jun 2013 – Dec 2015"
+    company: "1st Bytes Computer Service · Part-time"
+    location: "Chattanooga, Tennessee, United States · On-site"
+    period: "Jun 2013 – Dec 2015 · 2 yrs 7 mos"
     current: false
     domains: ["hardware", "networking", "operations"]
-    summary: "Provided hands-on hardware repair, LAN administration, and Windows Server support for commercial and residential clients."
+    summary: "Installed, configured, and repaired workstations, LANs, Windows Server Active Directory, DHCP, and Office 365 environments."
     bullets:
-      - "Installed, configured, troubleshot, and repaired computer workstations, local area networks (LANs), and networked printers."
-      - "Configured and maintained Active Directory users on Windows Server, DHCP services, and Office 365 administration."
-      - "Researched and proposed IT system improvements to enhance client reliability and security."
+      - "Install, configure, troubleshoot, and repair computer workstations, local area networks, and printers."
+      - "Configure and maintain Active Directory users on Windows Server."
+      - "Build strong relationships with clients."
+      - "Help improve overall IT systems by researching and proposing different ideas."
 
 # =============================================================================
 # TECHNICAL SKILLS & DOMAINS
@@ -102,24 +116,24 @@ skill_domains:
     code: "DOM-01"
     description: "Hyperscale bare-metal server lifecycle, rack integration, and enterprise workstation/server hardware."
     skills:
-      - "Hyperscale Data Center Infrastructure & Rack Deployment"
+      - "Data Center Infrastructure & Hyperscale Rack Deployment"
       - "Bare-Metal Server Triage (CPU, RAM, NVMe, Motherboard, PSU)"
       - "Fleet Hardware Upgrade Coordination & Asset Re-Inventory"
-      - "Workstation & Server Hardware Diagnostics & Repair"
+      - "Workstation, Server & Printer Diagnostics & Repair"
+      - "Computer Imaging, Configuration & Redeployment"
       - "Power Distribution, Cable Management & ESD Safety"
-      - "Printer, VoIP Handset & Endpoint Hardware Lifecycle"
 
   - id: "networking"
     title: "Optical Fiber & Enterprise Networking"
     code: "DOM-02"
     description: "Layer 1 fiber/copper cabling, Layer 2/3 switching, enterprise wireless, and voice network operations."
     skills:
-      - "Single-Mode (SMF) & Multi-Mode (MMF) Fiber Optics & Cat6"
-      - "Layer 2 & Layer 3 LAN Switching & VLAN Configuration"
-      - "Aruba Enterprise Wireless Access Points & Controllers"
-      - "DNS, DHCP & Network Performance Assessment / Site Surveys"
-      - "Enterprise VoIP Telephony (Yealink) & Underground Cable Locating"
-      - "Optical Transceiver & Physical Link Troubleshooting"
+      - "Single-Mode Fiber, Multimode Fiber & Cat 6 Ethernet"
+      - "Layer 2 & Layer 3 LAN Switching"
+      - "Aruba Wireless Access Points & Controllers"
+      - "Domain Name System (DNS) & DHCP Administration"
+      - "VoIP Phones (Yealink) & Voice Network Troubleshooting"
+      - "Site Surveys, Network Assessments & Underground Cable Locating"
 
   - id: "linux"
     title: "Systems, Linux, Cloud & Deployment"
@@ -127,23 +141,23 @@ skill_domains:
     description: "Operating systems, virtualization, automated endpoint deployment, and scripting workflows."
     skills:
       - "Linux CLI & System Fundamentals (LPI Linux Essentials)"
-      - "Windows Server, Active Directory & VMware Administration"
-      - "Microsoft Deployment Toolkit (MDT) Scripting & Imaging"
-      - "Jamf Pro MDM Package Scripting & Apple Device Management"
-      - "Cloud & SaaS Platforms (Office 365, AppsAnywhere, CompTIA Cloud)"
+      - "Windows Server, Active Directory & VMware"
+      - "Microsoft Deployment Toolkit (MDT) Scripting & Software Deployment"
+      - "JAMF Mobile Device Management (MDM) Scripting & Apple Packaging"
+      - "Office 365 Administration & AppsAnywhere SaaS Delivery"
       - "Hugo Static Site CMS, Git & Automated Tracking Workflows"
 
   - id: "operations"
-    title: "IT Service Management, Security & Leadership"
+    title: "IT Service Management, Security & Support"
     code: "DOM-04"
     description: "ITIL-aligned service delivery, project coordination, technical documentation, and user education."
     skills:
-      - "ITIL v4 Service Management & KACE Ticketing Workflows"
+      - "ITIL v4 Service Management & KACE Help Desk Ticketing"
       - "IT Project Management (CompTIA Project+) & Upgrade Coordination"
       - "Infrastructure Security & Best Practices (CompTIA Security+)"
-      - "Technical Documentation, SOP Authoring & Reporting"
-      - "Cross-Functional Collaboration & Network Engineer Backup"
-      - "User Training, Mentorship & High-Empathy Technical Support"
+      - "Network Quality/Performance Reporting & Optimization"
+      - "Remote Network & Computer Support (On and Off Campus)"
+      - "Team Leadership by Example & High-Empathy User Communication"
 
 # =============================================================================
 # FEATURED PROJECTS & INITIATIVES
@@ -152,64 +166,97 @@ projects:
   - title: "Hardware Fleet Upgrades Tracker & Re-Inventory Automation"
     category: "Google · Data Center Operations"
     domain: "operations"
-    period: "2023 – Present"
+    period: "Jul 2023 – Present"
     summary: "Designed and authored an operational tracking system, re-inventory intake workflow, and automated dispatch notification pipeline for coordinating multi-cluster hardware upgrades."
     outcomes:
       - "Automated project kick-off emails and drop-zone coordination for floor technicians and dispatch leads."
       - "Centralized real-time tracking of machine upgrade completion counts and cluster availability limits."
-    tags: ["Data Center", "Workflow Automation", "Fleet Upgrades", "Inventory Control"]
+    tags: ["Data Center Infrastructure", "Workflow Automation", "Fleet Upgrades", "Inventory Control"]
 
-  - title: "Campus-Wide Aruba Wireless Access Point Replacement"
-    category: "The University of the South · Networking"
+  - title: "Aruba Wireless Access Point Replacement"
+    category: "The University of the South"
     domain: "networking"
     period: "Aug 2021 – Jul 2023"
-    summary: "Executed a campus-wide wireless infrastructure refresh, replacing legacy access points with modern hardware integrated with Aruba Mobility Controllers."
+    summary: "Replaced all campus Wireless Access Points with newer hardware better supported by the university's Aruba Controller to expand coverage area and reliability."
     outcomes:
-      - "Expanded wireless coverage footprint and signal reliability across academic and residential buildings."
-      - "Performed pre- and post-deployment site surveys and controller provisioning."
-    tags: ["Aruba Wi-Fi", "Layer 2/3 Networking", "Site Surveys", "Hardware Refresh"]
+      - "Upgraded wireless coverage footprint and controller support across campus buildings."
+      - "Performed site surveys, physical installation, and network verification."
+    tags: ["Aruba Wireless", "Access Points", "Layer 2/3 Networking", "Site Surveys"]
 
-  - title: "Campus VoIP Phone Migration & AppsAnywhere SaaS Rollout"
-    category: "The University of the South · Systems & Voice"
-    domain: "hardware"
-    period: "May 2020 – Sep 2020"
-    summary: "Coordinated two major campus technology modernizations: migrating buildings from analog telephony to Yealink VoIP phones, and launching the AppsAnywhere centralized software delivery platform."
+  - title: "IP Phone Migration"
+    category: "The University of the South"
+    domain: "networking"
+    period: "Jun 2020 – Sep 2020"
+    summary: "Helped IT staff migrate university users from older analog phones to new Yealink VoIP phones across campus buildings."
     outcomes:
-      - "Transitioned campus departments from legacy analog lines to modern IP telephony in coordinated deployment teams."
-      - "Enabled seamless on- and off-campus software delivery to Windows and Mac endpoints via AppsAnywhere SaaS."
-    tags: ["VoIP Migration", "Yealink", "AppsAnywhere SaaS", "Windows & Mac"]
+      - "Coordinated in IT deployment teams to roll out and provision VoIP handsets across university facilities."
+      - "Modernized campus voice communications and supported post-migration voice network troubleshooting."
+    tags: ["Yealink VoIP", "Voice Networking", "Campus Deployment", "Telephony Migration"]
+
+  - title: "AppsAnywhere Implementation"
+    category: "The University of the South"
+    domain: "linux"
+    period: "May 2020 – Jul 2020"
+    summary: "Assisted IT staff with the implementation of AppsAnywhere Software-as-a-Service (SaaS) for centralized university software delivery."
+    outcomes:
+      - "Enabled delivery of all university software from a centralized platform to any device, on and off campus, including Windows and Mac."
+    tags: ["AppsAnywhere SaaS", "Software Delivery", "Windows & Mac", "Endpoint Management"]
 
 # =============================================================================
 # CERTIFICATIONS, TRAINING & EDUCATION
 # =============================================================================
 certifications:
   - name: "Google IT Support Certificate"
-    issuer: "Coursera / Google"
+    issuer: "Coursera"
     status: "Issued Jun 2023"
-    detail: "Comprehensive training in troubleshooting, networking, operating systems, system administration, and security."
+    detail: "Professional certificate in IT support, networking, operating systems, system administration, and security."
+  - name: "CompTIA Secure Infrastructure Specialist (CSIS)"
+    issuer: "CompTIA"
+    status: "Issued Jan 2023"
+    detail: "Stackable specialist credential validating combined expertise across CompTIA A+, Network+, and Security+."
+  - name: "CompTIA Security+"
+    issuer: "CompTIA"
+    status: "Issued Jan 2023"
+    detail: "Core cybersecurity skills, network security, threat mitigation, and secure infrastructure operations."
+  - name: "CompTIA Network+"
+    issuer: "CompTIA"
+    status: "Issued Jan 2023"
+    detail: "Enterprise wired and wireless networking, Layer 1–3 troubleshooting, DNS/DHCP, and network operations."
+  - name: "CompTIA A+"
+    issuer: "CompTIA"
+    status: "Issued Jan 2023"
+    detail: "Hardware diagnostics, operating systems, troubleshooting, and endpoint/mobile device administration."
+  - name: "CompTIA Cloud Essentials"
+    issuer: "CompTIA"
+    status: "Issued Oct 2020"
+    detail: "Cloud computing principles, service models, cloud operations, and governance."
   - name: "LPI Linux Essentials"
     issuer: "Linux Professional Institute (LPI)"
     status: "Issued Sep 2020"
-    detail: "Command-line operations, Linux operating system fundamentals, scripting, and file/system permissions."
-  - name: "ITIL Foundation v4 & CompTIA Project+"
-    issuer: "AXELOS & CompTIA"
+    detail: "Linux command-line interface, operating system administration fundamentals, and scripting."
+  - name: "CIW User Interface Designer"
+    issuer: "CIW"
+    status: "Issued Feb 2020"
+    detail: "User interface design principles, web usability, and accessible front-end structure."
+  - name: "ITIL Foundation V4"
+    issuer: "AXELOS Global Best Practice"
     status: "Issued Sep 2019"
-    detail: "IT service management lifecycle practices and structured IT project management."
-  - name: "CompTIA Cloud Essentials & CIW UI Designer"
-    issuer: "CompTIA & CIW"
-    status: "Issued 2020"
-    detail: "Cloud computing architecture/operations and user interface design principles."
-  - name: "CompTIA Security+, Network+, A+, CSIS & CIOS"
+    detail: "IT service management framework, incident/problem/change workflows, and continual improvement."
+  - name: "CompTIA Project+"
     issuer: "CompTIA"
-    status: "2018 – 2026"
-    detail: "Stackable credentials as a CompTIA Secure Infrastructure Specialist (CSIS) and IT Operations Specialist (CIOS)."
+    status: "Issued Sep 2019"
+    detail: "IT project lifecycle management, scheduling, stakeholder communication, and resource coordination."
+  - name: "CompTIA IT Operations Specialist (CIOS)"
+    issuer: "CompTIA"
+    status: "Issued May 2018"
+    detail: "Stackable specialist certification validating hardware and network operations proficiency."
 
 education:
-  - degree: "Bachelor's Degree, Information Technology"
-    institution: "Western Governors University (WGU)"
+  - degree: "Bachelor's degree, Information Technology"
+    institution: "Western Governors University"
     period: "2018 – 2020"
-    detail: "Comprehensive undergraduate degree focused on enterprise networking, systems administration, cloud foundations, cybersecurity, and IT project management."
-  - degree: "Associate of Arts and Sciences (AAS), Information Technology"
+    detail: "Undergraduate degree in Information Technology covering enterprise networking, security, systems administration, cloud computing, and project management."
+  - degree: "Associate of Arts and Sciences - AAS, Information Technology"
     institution: "Chattanooga State Community College"
     period: "2011 – 2013"
-    detail: "Hands-on foundational degree in computer hardware, local area networking, operating systems, and technical support."
+    detail: "Foundational degree in Information Technology, computer hardware, local area networks, and technical support."
