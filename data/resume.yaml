@@ -2,9 +2,6 @@
 # FLAT-FILE RESUME & PORTFOLIO DATA (data/resume.yaml)
 # =============================================================================
 # Edit any field in this file to update your website and printable PDF resume.
-# NOTE: Because this repository is deployed publicly via GitHub + Netlify,
-# keep all descriptions public-safe (avoid internal code names, internal tool
-# names, or confidential metrics).
 # =============================================================================
 
 profile:
@@ -12,167 +9,207 @@ profile:
   initials: "NR"
   headline: "Data Center Technician"
   organization: "Google"
-  location: "United States"
-  availability: "Infrastructure Operations & Hardware Systems"
-  tagline: "Maintaining and scaling mission-critical compute, high-speed optical networking, and bare-metal fleet reliability at hyperscale."
+  location: "Bridgeport, Alabama"
+  availability: "Data Center Infrastructure · Networking · IT Systems"
+  tagline: "Experienced IT & Data Center Infrastructure professional with 12+ years across hyperscale fleet operations, enterprise networking, and systems administration."
   summary: >
-    Hands-on Data Center Technician at Google specializing in bare-metal server lifecycle
-    operations, high-density optical network infrastructure, and systematic hardware
-    diagnostics across large-scale production fleets. Experienced in root-cause failure
-    analysis, Linux-based hardware validation, structured cabling, and collaborating
-    with hardware and network engineering teams to maximize fleet uptime and operational safety.
+    Motivated, team-oriented IT and Data Center professional holding a Bachelor's and Associate's
+    degree in Information Technology alongside industry certifications across Linux, networking,
+    cloud, security, and IT service management. Currently serving as a Data Center Technician at
+    Google, combining deep hands-on expertise in bare-metal server hardware, single-mode/multi-mode
+    fiber optics, and Layer 2/Layer 3 switching with a passion for workflow automation, clear
+    documentation, and mentoring others.
   contact:
-    email: "neal.raulston@example.com"
-    linkedin: "https://www.linkedin.com/in/neal-raulston"
+    email: "neal.raulston@gmail.com"
+    linkedin: "https://www.linkedin.com/in/neal-raulston/"
     github: "https://github.com/nraulston"
-    location_display: "United States"
+    location_display: "Bridgeport, Alabama, United States"
 
 # Key operational focus areas shown in the summary bar
 highlights:
-  - metric: "Hyperscale Fleet"
-    label: "Server & Rack Lifecycle Operations"
-    detail: "Deployment, burn-in validation, triage, and decommissioning of high-density compute and storage racks."
-  - metric: "Layer 1 / Layer 2"
-    label: "Optical & Copper Networking"
-    detail: "Single-mode/multi-mode fiber installation, OTDR/light-level verification, transceiver diagnostics, and spine-leaf cabling."
-  - metric: "Linux & CLI"
-    label: "Hardware & System Diagnostics"
-    detail: "Automated diagnostic workflows, kernel log analysis, BMC/out-of-band troubleshooting, and script-assisted repairs."
+  - metric: "Hyperscale & Enterprise"
+    label: "Data Center & Server Infrastructure"
+    detail: "3+ years in hyperscale Google data center operations plus 10+ years in enterprise networking and systems support."
+  - metric: "Layer 1 / Layer 2 / Layer 3"
+    label: "Optical Fiber, Switching & Wireless"
+    detail: "Single-mode & multi-mode fiber, Cat6 ethernet, L2/L3 switches, Aruba enterprise Wi-Fi, and VoIP infrastructure."
+  - metric: "B.S. IT + 11 Certs"
+    label: "Certified Systems & Linux Professional"
+    detail: "WGU B.S. in Information Technology, LPI Linux Essentials, CompTIA Security+/Network+/A+/Project+/Cloud, and ITIL v4."
 
 # =============================================================================
 # WORK EXPERIENCE TIMELINE
 # =============================================================================
-# Each item supports `domains` tags so visitors can filter your experience by
-# technical area (hardware, networking, linux, operations).
 experience:
-  - role: "Data Center Technician"
+  - role: "Datacenter Technician"
     company: "Google"
-    location: "United States"
-    period: "Present"
+    location: "Bridgeport, Alabama · On-site"
+    period: "Jul 2023 – Present"
     current: true
     domains: ["hardware", "networking", "linux", "operations"]
-    summary: "Execute day-to-day physical and logical operations across hyperscale data center production floors, ensuring high availability for cloud, compute, and AI/ML infrastructure."
+    summary: "Execute mission-critical physical and logical infrastructure operations across hyperscale data center production floors."
     bullets:
-      - "Diagnose and resolve complex bare-metal server faults across CPU, DIMM/memory subsystems, NVMe/SSD storage arrays, motherboards, PSUs, and accelerator hardware within strict SLA windows."
-      - "Deploy, cable, and validate new compute and network racks from initial placement through power-on self-test, firmware verification, and production handoff."
-      - "Troubleshoot high-speed optical interconnects (SMF/MMF, MPO/MTP, LC), performing optical power-meter testing, scope inspection, and transceiver replacement to maintain low-latency fabric links."
-      - "Use Linux command-line diagnostic utilities, system logs, and out-of-band management interfaces to isolate intermittent hardware vs. software anomalies."
-      - "Partner with site operations, facilities engineers, and remote network engineers during scheduled maintenance windows, power events, and large-scale fleet upgrades."
-      - "Maintain strict adherence to electrical safety, ESD mitigation, physical security, and data-bearing device sanitization standards."
+      - "Lead and coordinate site-wide hardware upgrade initiatives, designing automated tracking spreadsheets, re-inventory intake forms, and dispatch notifications to streamline multi-cluster fleet upgrades."
+      - "Diagnose and resolve complex bare-metal server hardware faults across CPUs, ECC memory, NVMe/SSD storage arrays, motherboards, PSUs, and accelerator trays within strict SLA windows."
+      - "Deploy, cable, and validate high-density compute and network racks from physical installation through burn-in testing, firmware verification, and production handoff."
+      - "Troubleshoot high-speed optical interconnects (SMF/MMF, MPO/MTP, LC), performing optical power-meter testing, scope inspection, and transceiver replacement."
+      - "Use Linux command-line diagnostics and out-of-band management tools to isolate intermittent hardware, firmware, and link-layer issues."
 
-  - role: "Infrastructure & IT Systems Technician (Sample Previous Role — Edit Me)"
-    company: "Previous Organization"
-    location: "United States"
-    period: "Prior Experience"
+  - role: "Information Technology Network Technician"
+    company: "The University of the South"
+    location: "Sewanee, Tennessee · On-site"
+    period: "Aug 2021 – Jul 2023"
+    current: false
+    domains: ["networking", "hardware", "linux", "operations"]
+    summary: "Partnered with the Strategic Digital Infrastructure team to plan, monitor, and maintain campus-wide enterprise data and voice networks."
+    bullets:
+      - "Installed, maintained, diagnosed, repaired, and troubleshot Layer 2 and Layer 3 switches, Aruba wireless access points, VoIP phones, Cat6 ethernet, single-mode fiber (SMF), and multi-mode fiber (MMF)."
+      - "Served as backup to the university's Network Engineer, performing regular site surveys, network quality/performance assessments, and system optimization recommendations."
+      - "Built scripts, maintained infrastructure, and deployed software packages for both Microsoft Deployment Toolkit (MDT) on Windows Server and Jamf Pro MDM for Apple devices."
+      - "Partnered with Facilities Management to locate and trace underground campus fiber and copper network/phone trunks."
+      - "Supported help desk personnel with complex network/voice escalations and maintained detailed work records in the KACE ticketing system."
+
+  - role: "Information Technology Help Desk Technician"
+    company: "The University of the South"
+    location: "Sewanee, Tennessee · On-site"
+    period: "Jan 2016 – Dec 2021"
+    current: false
+    domains: ["hardware", "operations", "linux"]
+    summary: "Delivered technical support, workstation deployment, and systems troubleshooting for faculty, staff, and students on and off campus."
+    bullets:
+      - "Troubleshot hardware, software, Windows Server, and VMware environments to identify and remediate root-cause technical issues."
+      - "Imaged, configured, and deployed campus workstations and managed full ticket lifecycles and escalations in the KACE help desk system."
+      - "Documented technical remediation playbooks and built strong, trusted relationships across faculty, staff, and students through calm, clear communication."
+
+  - role: "Information Technology Specialist"
+    company: "1st Bytes Computer Service"
+    location: "Chattanooga, Tennessee · On-site"
+    period: "Jun 2013 – Dec 2015"
     current: false
     domains: ["hardware", "networking", "operations"]
-    summary: "Managed enterprise hardware lifecycle, structured network cabling, and systems administration across distributed environments."
+    summary: "Provided hands-on hardware repair, LAN administration, and Windows Server support for commercial and residential clients."
     bullets:
-      - "Performed hardware break/fix, workstation and server provisioning, and preventative maintenance across critical business systems."
-      - "Installed, terminated, and certified structured Cat6/Cat6A copper and fiber patch panels, switches, and rack PDUs."
-      - "Documented standard operating procedures (SOPs), rack elevation diagrams, and asset inventory tracking to streamline technician onboarding."
+      - "Installed, configured, troubleshot, and repaired computer workstations, local area networks (LANs), and networked printers."
+      - "Configured and maintained Active Directory users on Windows Server, DHCP services, and Office 365 administration."
+      - "Researched and proposed IT system improvements to enhance client reliability and security."
 
 # =============================================================================
 # TECHNICAL SKILLS & DOMAINS
 # =============================================================================
 skill_domains:
   - id: "hardware"
-    title: "Server Hardware & Rack Infrastructure"
+    title: "Data Center & Server Hardware"
     code: "DOM-01"
-    description: "End-to-end physical layer lifecycle, component-level fault isolation, and high-density rack integration."
+    description: "Hyperscale bare-metal server lifecycle, rack integration, and enterprise workstation/server hardware."
     skills:
-      - "Bare-Metal Server Triage (CPU, ECC RAM, NVMe, PCIe, Motherboard)"
-      - "High-Density Compute & Storage Rack Deployment"
-      - "Accelerator / GPU Tray Hardware Maintenance"
-      - "Rack PDU Power Balancing & Thermal Airflow Management"
-      - "Out-of-Band / BMC Hardware Diagnostics"
-      - "Data-Bearing Device Handling & Secure Decommissioning"
+      - "Hyperscale Data Center Infrastructure & Rack Deployment"
+      - "Bare-Metal Server Triage (CPU, RAM, NVMe, Motherboard, PSU)"
+      - "Fleet Hardware Upgrade Coordination & Asset Re-Inventory"
+      - "Workstation & Server Hardware Diagnostics & Repair"
+      - "Power Distribution, Cable Management & ESD Safety"
+      - "Printer, VoIP Handset & Endpoint Hardware Lifecycle"
 
   - id: "networking"
-    title: "Optical Fiber & Network Fabric"
+    title: "Optical Fiber & Enterprise Networking"
     code: "DOM-02"
-    description: "Physical layer connectivity, optical link budget verification, and structured data center cabling."
+    description: "Layer 1 fiber/copper cabling, Layer 2/3 switching, enterprise wireless, and voice network operations."
     skills:
-      - "Single-Mode (SMF) & Multi-Mode (MMF) Fiber Optics"
-      - "MPO/MTP Trunking & LC Duplex Patching"
-      - "Optical Power Meter, Light Source & Fiber Scope Inspection"
-      - "QSFP-DD / OSFP / SFP+ Optical Transceiver Troubleshooting"
-      - "Spine-Leaf Topology & Top-of-Rack (ToR) Switch Cabling"
-      - "Link Flap & Bit-Error-Rate (BER) Physical Layer Isolation"
+      - "Single-Mode (SMF) & Multi-Mode (MMF) Fiber Optics & Cat6"
+      - "Layer 2 & Layer 3 LAN Switching & VLAN Configuration"
+      - "Aruba Enterprise Wireless Access Points & Controllers"
+      - "DNS, DHCP & Network Performance Assessment / Site Surveys"
+      - "Enterprise VoIP Telephony (Yealink) & Underground Cable Locating"
+      - "Optical Transceiver & Physical Link Troubleshooting"
 
   - id: "linux"
-    title: "Linux Systems, CLI & Automation"
+    title: "Systems, Linux, Cloud & Deployment"
     code: "DOM-03"
-    description: "Operating system diagnostics, log inspection, and tooling for rapid fleet troubleshooting."
+    description: "Operating systems, virtualization, automated endpoint deployment, and scripting workflows."
     skills:
-      - "Linux CLI Administration & Bash Shell Workflows"
-      - "Kernel & Hardware Log Analysis (dmesg, syslog, SMART, MCE)"
-      - "Network Interface & Routing Verification (ip, ethtool, ping, traceroute)"
-      - "PXE Boot, Firmware / BIOS / BMC Provisioning"
-      - "Git Version Control & Static Site / Documentation Workflows"
-      - "Python & Shell Scripting for Diagnostic Automation"
+      - "Linux CLI & System Fundamentals (LPI Linux Essentials)"
+      - "Windows Server, Active Directory & VMware Administration"
+      - "Microsoft Deployment Toolkit (MDT) Scripting & Imaging"
+      - "Jamf Pro MDM Package Scripting & Apple Device Management"
+      - "Cloud & SaaS Platforms (Office 365, AppsAnywhere, CompTIA Cloud)"
+      - "Hugo Static Site CMS, Git & Automated Tracking Workflows"
 
   - id: "operations"
-    title: "Data Center Operations & Safety"
+    title: "IT Service Management, Security & Leadership"
     code: "DOM-04"
-    description: "Disciplined execution in mission-critical environments with a focus on safety, documentation, and continuous improvement."
+    description: "ITIL-aligned service delivery, project coordination, technical documentation, and user education."
     skills:
-      - "SLA-Driven Ticket Queue Triage & Prioritization"
-      - "Change Management & Maintenance Window Execution"
-      - "ESD Protection, LOTO Awareness & Data Center EHS Standards"
-      - "Root-Cause Analysis (RCA) & Defect Escalation"
-      - "SOP Authoring & Peer Technician Mentorship"
-      - "Inventory Auditing & Asset Lifecycle Tracking"
+      - "ITIL v4 Service Management & KACE Ticketing Workflows"
+      - "IT Project Management (CompTIA Project+) & Upgrade Coordination"
+      - "Infrastructure Security & Best Practices (CompTIA Security+)"
+      - "Technical Documentation, SOP Authoring & Reporting"
+      - "Cross-Functional Collaboration & Network Engineer Backup"
+      - "User Training, Mentorship & High-Empathy Technical Support"
 
 # =============================================================================
 # FEATURED PROJECTS & INITIATIVES
 # =============================================================================
 projects:
-  - title: "High-Density Rack Deployment & Burn-In Workflow"
-    category: "Fleet Infrastructure"
-    domain: "hardware"
-    period: "Operational Initiative"
-    summary: "Standardized physical inspection, cable dressing, and initial power-up verification checklists for incoming compute racks to reduce early-life link and thermal issues."
+  - title: "Hardware Fleet Upgrades Tracker & Re-Inventory Automation"
+    category: "Google · Data Center Operations"
+    domain: "operations"
+    period: "2023 – Present"
+    summary: "Designed and authored an operational tracking system, re-inventory intake workflow, and automated dispatch notification pipeline for coordinating multi-cluster hardware upgrades."
     outcomes:
-      - "Reduced post-deployment cabling rework through structured pre-flight optical inspection and port-mapping verification."
-      - "Documented repeatable troubleshooting steps for common burn-in failures across memory, storage, and optical links."
-    tags: ["Rack Integration", "Optical Verification", "Burn-In Testing", "SOPs"]
+      - "Automated project kick-off emails and drop-zone coordination for floor technicians and dispatch leads."
+      - "Centralized real-time tracking of machine upgrade completion counts and cluster availability limits."
+    tags: ["Data Center", "Workflow Automation", "Fleet Upgrades", "Inventory Control"]
 
-  - title: "Optical Link Triage & Transceiver Health Playbook"
-    category: "Network Reliability"
+  - title: "Campus-Wide Aruba Wireless Access Point Replacement"
+    category: "The University of the South · Networking"
     domain: "networking"
-    period: "Technical Documentation"
-    summary: "Compiled a quick-reference field methodology for isolating marginal optical links, dirty fiber end-faces, and failing high-speed transceivers on the data center floor."
+    period: "Aug 2021 – Jul 2023"
+    summary: "Executed a campus-wide wireless infrastructure refresh, replacing legacy access points with modern hardware integrated with Aruba Mobility Controllers."
     outcomes:
-      - "Streamlined handoffs between floor technicians and remote network engineers with standardized light-level and loopback test reporting."
-      - "Improved first-time fix rates on intermittent packet-loss and link-flap tickets."
-    tags: ["Fiber Optics", "QSFP/OSFP", "Layer 1 Diagnostics", "Network Operations"]
+      - "Expanded wireless coverage footprint and signal reliability across academic and residential buildings."
+      - "Performed pre- and post-deployment site surveys and controller provisioning."
+    tags: ["Aruba Wi-Fi", "Layer 2/3 Networking", "Site Surveys", "Hardware Refresh"]
 
-  - title: "Hugo + Netlify Flat-File Portfolio Architecture"
-    category: "Personal Engineering"
-    domain: "linux"
-    period: "2026"
-    summary: "Designed and deployed a fast, zero-database personal resume and technical portfolio powered by Hugo static site generation, YAML data schemas, and continuous deployment via GitHub and Netlify."
+  - title: "Campus VoIP Phone Migration & AppsAnywhere SaaS Rollout"
+    category: "The University of the South · Systems & Voice"
+    domain: "hardware"
+    period: "May 2020 – Sep 2020"
+    summary: "Coordinated two major campus technology modernizations: migrating buildings from analog telephony to Yealink VoIP phones, and launching the AppsAnywhere centralized software delivery platform."
     outcomes:
-      - "Sub-second page loads with 100/100 Lighthouse performance and accessibility targets."
-      - "Single-source-of-truth YAML configuration (`data/resume.yaml`) that simultaneously drives the interactive web portfolio and a print-ready PDF resume."
-    tags: ["Hugo", "YAML", "Git / GitHub", "Netlify CI/CD", "Vanilla CSS"]
+      - "Transitioned campus departments from legacy analog lines to modern IP telephony in coordinated deployment teams."
+      - "Enabled seamless on- and off-campus software delivery to Windows and Mac endpoints via AppsAnywhere SaaS."
+    tags: ["VoIP Migration", "Yealink", "AppsAnywhere SaaS", "Windows & Mac"]
 
 # =============================================================================
 # CERTIFICATIONS, TRAINING & EDUCATION
 # =============================================================================
 certifications:
-  - name: "Hyperscale Data Center Operations & Safety Training"
-    issuer: "Enterprise / Industry Standard"
-    status: "Active"
-    detail: "High-density hardware handling, electrical safety awareness, fiber optic inspection, and secure media handling."
-  - name: "CompTIA Linux+ / Server+ / Network+ (Optional — Edit in data/resume.yaml)"
-    issuer: "CompTIA / Industry Certification"
-    status: "Customizable"
-    detail: "Replace or add your specific certifications, licenses, or coursework in data/resume.yaml."
+  - name: "Google IT Support Certificate"
+    issuer: "Coursera / Google"
+    status: "Issued Jun 2023"
+    detail: "Comprehensive training in troubleshooting, networking, operating systems, system administration, and security."
+  - name: "LPI Linux Essentials"
+    issuer: "Linux Professional Institute (LPI)"
+    status: "Issued Sep 2020"
+    detail: "Command-line operations, Linux operating system fundamentals, scripting, and file/system permissions."
+  - name: "ITIL Foundation v4 & CompTIA Project+"
+    issuer: "AXELOS & CompTIA"
+    status: "Issued Sep 2019"
+    detail: "IT service management lifecycle practices and structured IT project management."
+  - name: "CompTIA Cloud Essentials & CIW UI Designer"
+    issuer: "CompTIA & CIW"
+    status: "Issued 2020"
+    detail: "Cloud computing architecture/operations and user interface design principles."
+  - name: "CompTIA Security+, Network+, A+, CSIS & CIOS"
+    issuer: "CompTIA"
+    status: "2018 – 2026"
+    detail: "Stackable credentials as a CompTIA Secure Infrastructure Specialist (CSIS) and IT Operations Specialist (CIOS)."
 
 education:
-  - degree: "Technical Education / Degree (Edit in data/resume.yaml)"
-    institution: "University or Technical Institute"
-    period: "Year – Year"
-    detail: "Information Technology, Computer Systems, Electronics, or related coursework and hands-on lab training."
+  - degree: "Bachelor's Degree, Information Technology"
+    institution: "Western Governors University (WGU)"
+    period: "2018 – 2020"
+    detail: "Comprehensive undergraduate degree focused on enterprise networking, systems administration, cloud foundations, cybersecurity, and IT project management."
+  - degree: "Associate of Arts and Sciences (AAS), Information Technology"
+    institution: "Chattanooga State Community College"
+    period: "2011 – 2013"
+    detail: "Hands-on foundational degree in computer hardware, local area networking, operating systems, and technical support."
