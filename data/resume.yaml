@@ -1,262 +1,456 @@
-# =============================================================================
-# FLAT-FILE RESUME & PORTFOLIO DATA (data/resume.yaml)
-# =============================================================================
-# Edit any field in this file to update your website and printable PDF resume.
-# =============================================================================
+{{ define "main" }}
+{{ $r := hugo.Data.resume }}
 
-profile:
-  name: "Neal Raulston"
-  initials: "NR"
-  headline: "Data Center Technician"
-  organization: "Google"
-  location: "Bridgeport, Alabama"
-  availability: "Data Center Infrastructure · Networking · IT Systems"
-  tagline: "Experienced IT & Data Center Infrastructure professional with 12+ years across hyperscale fleet operations, enterprise networking, and systems administration."
-  summary: >
-    Experienced IT professional. I am a team player and highly motivated. I hold an Associate's
-    degree in Information Technology and a Bachelor's degree in Information Technology from
-    Western Governors University, along with 11 industry IT certifications. Currently serving as
-    a Data Center Technician at Google, my focus is on data center infrastructure, networking,
-    security, and cloud—and I enjoy educating and supporting others while keeping systems
-    reliable, safe, and secure.
-  contact:
-    email: "neal.raulston@example.com"
-    linkedin: "https://www.linkedin.com/in/neal-raulston/"
-    github: "https://github.com/nraulston"
-    location_display: "Bridgeport, Alabama, United States"
+<style>
+  .ambient-glow { position: absolute; top: 0; left: 0; right: 0; height: 520px; background: radial-gradient(ellipse 75% 420px at 50% -80px, hsla(192, 88%, 48%, 0.15) 0%, hsla(38, 90%, 50%, 0.05) 45%, transparent 80%); pointer-events: none; z-index: 0; }
+  main, header, footer { position: relative; z-index: 1; }
+  .role-org { color: var(--accent-primary); font-weight: 600; }
+  .highlight-card { display: flex; align-items: flex-start; gap: 1rem; }
+  .highlight-icon-box { display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 10px; background: var(--accent-primary-subtle); color: var(--accent-primary); flex-shrink: 0; margin-top: 0.1rem; }
+  .highlight-icon-box svg { width: 21px; height: 21px; }
+  .highlight-body { flex: 1; }
+  .metrics-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 3rem; padding-top: 2.25rem; border-top: 1px solid var(--border-subtle); }
+  .metric-tile { display: flex; flex-direction: column; gap: 0.2rem; padding: 1.1rem 1.25rem; border-radius: 10px; background: var(--bg-secondary); border: 1px solid var(--border-subtle); }
+  .metric-value { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; color: var(--text-primary); line-height: 1.15; }
+  .metric-caption { font-size: 0.82rem; color: var(--text-secondary); }
+  .timeline-track { position: relative; display: flex; flex-direction: column; gap: 1.5rem; padding-left: 2rem; }
+  .timeline-track::before { content: ""; position: absolute; top: 0.75rem; bottom: 0.75rem; left: 7px; width: 2px; background: var(--border-strong); }
+  .timeline-item { position: relative; display: block; padding: 0; background: none; border: none; box-shadow: none; }
+  .timeline-node { position: absolute; left: -2rem; top: 1.75rem; width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; }
+  .node-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--surface-card); border: 2px solid var(--accent-primary); }
+  .node-dot.node-active { background: var(--accent-status); border-color: var(--accent-status); box-shadow: 0 0 0 5px hsla(152, 72%, 46%, 0.16); }
+  .timeline-card { background-color: var(--surface-card); background-image: var(--surface-texture); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 1.75rem 2rem; box-shadow: var(--shadow-card); }
+  .timeline-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1.25rem; flex-wrap: wrap; padding-bottom: 1rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border-subtle); }
+  .company-pill-row { display: flex; align-items: center; gap: 0.65rem; margin-bottom: 0.3rem; }
+  .timeline-meta-group { display: flex; flex-direction: column; align-items: flex-end; gap: 0.2rem; text-align: right; }
+  .timeline-bullets.bullets-two-col { display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 1.75rem; row-gap: 0.65rem; }
+  .projects-grid, .education-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .education-card { display: flex; align-items: flex-start; gap: 1.15rem; background-color: var(--surface-card); background-image: var(--surface-texture); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 1.65rem; box-shadow: var(--shadow-card); }
+  .edu-icon-box { display: flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 10px; background: hsla(38, 94%, 56%, 0.12); color: var(--accent-secondary); flex-shrink: 0; }
+  .edu-icon-box svg { width: 22px; height: 22px; }
+  .edu-body { flex: 1; }
+  .edu-header { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.35rem; flex-wrap: wrap; }
+  .edu-institution { font-family: var(--font-mono); font-size: 0.78rem; font-weight: 600; color: var(--accent-primary); text-transform: uppercase; letter-spacing: 0.04em; }
+  .edu-period { font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-muted); }
+  .edu-degree { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.45rem; }
+  .edu-detail { font-size: 0.88rem; color: var(--text-secondary); }
+  .certs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.15rem; }
+  .cert-card { display: flex; flex-direction: column; background-color: var(--surface-card); background-image: var(--surface-texture); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 1.25rem 1.35rem; box-shadow: var(--shadow-card); }
+  .cert-top { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.6rem; }
+  .cert-issuer-pill { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 600; padding: 0.16rem 0.5rem; border-radius: 4px; background: var(--accent-primary-subtle); color: var(--accent-primary); text-transform: uppercase; }
+  .cert-date { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); }
+  .cert-name { font-family: var(--font-display); font-size: 0.98rem; font-weight: 600; margin-bottom: 0.35rem; line-height: 1.3; }
+  .cert-detail { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.48; }
+  @media (max-width: 960px) { .metrics-strip, .certs-grid { grid-template-columns: repeat(2, 1fr); } .timeline-bullets.bullets-two-col, .projects-grid, .education-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 600px) { .metrics-strip, .certs-grid { grid-template-columns: 1fr; } .timeline-meta-group { align-items: flex-start; text-align: left; } }
+</style>
 
-# Key operational focus areas shown in the summary bar
-highlights:
-  - metric: "Hyperscale & Enterprise"
-    label: "Data Center & Server Infrastructure"
-    detail: "3+ years in hyperscale Google data center operations plus 10+ years in university networking and IT systems."
-  - metric: "Layer 1 / Layer 2 / Layer 3"
-    label: "Optical Fiber, Switching & Wireless"
-    detail: "Single-mode & multi-mode fiber, Cat 6 ethernet, Layer 2/Layer 3 switches, Aruba Wi-Fi, and VoIP infrastructure."
-  - metric: "B.S. IT + 11 Certs"
-    label: "Certified Systems & Network Professional"
-    detail: "WGU B.S. in Information Technology, Google IT Support, LPI Linux Essentials, CompTIA Security+/Network+/A+/Project+/Cloud, and ITIL v4."
+<!-- Ambient Top Glow -->
+<div class="ambient-glow no-print" aria-hidden="true"></div>
 
-# =============================================================================
-# WORK EXPERIENCE TIMELINE
-# =============================================================================
-experience:
-  - role: "Datacenter Technician"
-    company: "Google · Full-time"
-    location: "Bridgeport, Alabama, United States · On-site"
-    period: "Jul 2023 – Present"
-    current: true
-    domains: ["hardware", "networking", "linux", "operations"]
-    summary: "Execute mission-critical physical and logical Data Center Infrastructure operations across hyperscale production floors."
-    bullets:
-      - "Lead and coordinate site-wide hardware upgrade initiatives, designing automated tracking spreadsheets, re-inventory intake forms, and dispatch notifications to streamline multi-cluster fleet upgrades."
-      - "Diagnose and resolve complex bare-metal server hardware faults across CPUs, ECC memory, NVMe/SSD storage arrays, motherboards, PSUs, and accelerator trays within strict SLA windows."
-      - "Deploy, cable, and validate high-density compute and network racks from physical installation through burn-in testing, firmware verification, and production handoff."
-      - "Troubleshoot high-speed optical interconnects (SMF/MMF, MPO/MTP, LC), performing optical power-meter testing, scope inspection, and transceiver replacement."
-      - "Use Linux command-line diagnostics and out-of-band management tools to isolate intermittent hardware, firmware, and link-layer issues."
+<!-- Top Navigation Header -->
+<header class="site-header no-print" id="site-header">
+  <div class="container header-inner">
+    <a href="#top" class="brand-link" id="brand-home-link" aria-label="Neal Raulston Home">
+      <span class="brand-monogram">{{ $r.profile.initials }}</span>
+      <span class="brand-text">
+        <span class="brand-name">{{ $r.profile.name }}</span>
+        <span class="brand-role">{{ $r.profile.headline }} · {{ $r.profile.organization }}</span>
+      </span>
+    </a>
 
-  - role: "Information Technology Network Technician"
-    company: "The University of the South · Full-time"
-    location: "Sewanee, Tennessee, United States · On-site"
-    period: "Aug 2021 – Jul 2023 · 2 yrs"
-    current: false
-    domains: ["networking", "hardware", "linux", "operations"]
-    summary: "Planned, monitored, and maintained campus-wide data and voice networks, enterprise switching, fiber optics, and endpoint deployment platforms."
-    bullets:
-      - "Work with the Strategic Digital Infrastructure team to plan, monitor, and maintain the university's network systems which include data and voice."
-      - "Install, maintain, diagnose, repair, modify, and troubleshoot communication equipment such as Layer 2 switches, Layer 3 switches, wireless access points, VoIP phones, Cat 6 ethernet, single-mode fiber, and multimode fiber."
-      - "Support help desk personnel in identifying and resolving issues with network components as well as voice network issues."
-      - "Perform regular site surveys and network assessments."
-      - "Develop reports on quality and performance of networks."
-      - "Provide recommendations on system enhancements for optimization."
-      - "Work with Facilities Management to locate underground university network and phone cables."
-      - "Maintain detailed record of work completed in KACE help desk system."
-      - "Provide remote network support for faculty, staff, and students on and off campus."
-      - "Serve as backup position for the university's network engineer."
-      - "Setup, maintain, provide scripts, and deploy software for Microsoft Deployment Toolkit (MDT) on Microsoft Server."
-      - "Setup, maintain, provide scripts, and deploy packages for JAMF mobile device management on Apple devices."
+    <nav class="site-nav" aria-label="Primary Navigation">
+      <a href="#experience" class="nav-link" id="nav-experience">Experience</a>
+      <a href="#domains" class="nav-link" id="nav-domains">Skills</a>
+      <a href="#projects" class="nav-link" id="nav-projects">Projects</a>
+      <a href="#education" class="nav-link" id="nav-education">Education</a>
+      <a href="#certifications" class="nav-link" id="nav-certifications">Certifications</a>
+      <a href="#contact" class="nav-link" id="nav-contact">Contact</a>
+    </nav>
 
-  - role: "Information Technology Help Desk Technician"
-    company: "The University of the South · Full-time"
-    location: "Sewanee, Tennessee, United States · On-site"
-    period: "Jan 2016 – Dec 2021 · 6 yrs"
-    current: false
-    domains: ["hardware", "operations", "linux"]
-    summary: "Provided comprehensive hardware, software, Windows Server, and VMware technical support for faculty, staff, students, and community members."
-    bullets:
-      - "Troubleshoot systems and work with users to determine needed hardware or software changes."
-      - "Document all technical issues and highlight steps to remediate problems."
-      - "Display exceptional people skills and maintain calm demeanor during every phone call."
-      - "Create help desk tickets for all issues and escalate tickets when appropriate."
-      - "Provide remote computer support for users on and off campus."
-      - "Image and configure computers that can be re-deployed."
-      - "Build strong relationships with faculty, staff, students, and community members."
-      - "Work as a team with others and lead by example."
-      - "Maintain clean and orderly workstation."
+    <div class="header-actions">
+      <button type="button" class="btn-secondary" id="print-resume-btn" title="Print or save formatted PDF resume">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <polyline points="6 9 6 2 18 2 18 9"></polyline>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+          <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+        <span>Print / PDF</span>
+      </button>
 
-  - role: "Information Technology Specialist"
-    company: "1st Bytes Computer Service · Part-time"
-    location: "Chattanooga, Tennessee, United States · On-site"
-    period: "Jun 2013 – Dec 2015 · 2 yrs 7 mos"
-    current: false
-    domains: ["hardware", "networking", "operations"]
-    summary: "Installed, configured, and repaired workstations, LANs, Windows Server Active Directory, DHCP, and Office 365 environments."
-    bullets:
-      - "Install, configure, troubleshoot, and repair computer workstations, local area networks, and printers."
-      - "Configure and maintain Active Directory users on Windows Server."
-      - "Build strong relationships with clients."
-      - "Help improve overall IT systems by researching and proposing different ideas."
+      <button type="button" class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle color theme" title="Switch between dark and light mode">
+        <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
 
-# =============================================================================
-# TECHNICAL SKILLS & DOMAINS
-# =============================================================================
-skill_domains:
-  - id: "hardware"
-    title: "Data Center & Server Hardware"
-    code: "DOM-01"
-    description: "Hyperscale bare-metal server lifecycle, rack integration, and enterprise workstation/server hardware."
-    skills:
-      - "Data Center Infrastructure & Hyperscale Rack Deployment"
-      - "Bare-Metal Server Triage (CPU, RAM, NVMe, Motherboard, PSU)"
-      - "Fleet Hardware Upgrade Coordination & Asset Re-Inventory"
-      - "Workstation, Server & Printer Diagnostics & Repair"
-      - "Computer Imaging, Configuration & Redeployment"
-      - "Power Distribution, Cable Management & ESD Safety"
+<main id="main-content">
+  <!-- Hero / Profile Section -->
+  <section class="hero-section" id="top">
+    <div class="container">
+      <div class="hero-layout">
+        <div class="hero-primary">
+          <div class="hero-meta-line">
+            <span class="mono-label">{{ $r.profile.organization }}</span>
+            <span class="meta-separator" aria-hidden="true">•</span>
+            <span class="mono-label">{{ $r.profile.location }}</span>
+            <span class="meta-separator" aria-hidden="true">•</span>
+            <span class="mono-label">{{ $r.profile.availability }}</span>
+          </div>
 
-  - id: "networking"
-    title: "Optical Fiber & Enterprise Networking"
-    code: "DOM-02"
-    description: "Layer 1 fiber/copper cabling, Layer 2/3 switching, enterprise wireless, and voice network operations."
-    skills:
-      - "Single-Mode Fiber, Multimode Fiber & Cat 6 Ethernet"
-      - "Layer 2 & Layer 3 LAN Switching"
-      - "Aruba Wireless Access Points & Controllers"
-      - "Domain Name System (DNS) & DHCP Administration"
-      - "VoIP Phones (Yealink) & Voice Network Troubleshooting"
-      - "Site Surveys, Network Assessments & Underground Cable Locating"
+          <h1 class="hero-title">{{ $r.profile.name }}</h1>
+          <p class="hero-role">{{ $r.profile.headline }} <span class="role-org">at {{ $r.profile.organization }}</span></p>
+          <p class="hero-tagline">{{ $r.profile.tagline }}</p>
+          <p class="hero-summary">{{ $r.profile.summary }}</p>
 
-  - id: "linux"
-    title: "Systems, Linux, Cloud & Deployment"
-    code: "DOM-03"
-    description: "Operating systems, virtualization, automated endpoint deployment, and scripting workflows."
-    skills:
-      - "Linux CLI & System Fundamentals (LPI Linux Essentials)"
-      - "Windows Server, Active Directory & VMware"
-      - "Microsoft Deployment Toolkit (MDT) Scripting & Software Deployment"
-      - "JAMF Mobile Device Management (MDM) Scripting & Apple Packaging"
-      - "Office 365 Administration & AppsAnywhere SaaS Delivery"
-      - "Hugo Static Site CMS, Git & Automated Tracking Workflows"
+          <!-- Print-only contact row -->
+          <div class="print-contact-row print-only">
+            <span>{{ $r.profile.contact.email }}</span>
+            <span>·</span>
+            <span>{{ $r.profile.contact.linkedin }}</span>
+            <span>·</span>
+            <span>{{ $r.profile.contact.github }}</span>
+            <span>·</span>
+            <span>{{ $r.profile.contact.location_display }}</span>
+          </div>
 
-  - id: "operations"
-    title: "IT Service Management, Security & Support"
-    code: "DOM-04"
-    description: "ITIL-aligned service delivery, project coordination, technical documentation, and user education."
-    skills:
-      - "ITIL v4 Service Management & KACE Help Desk Ticketing"
-      - "IT Project Management (CompTIA Project+) & Upgrade Coordination"
-      - "Infrastructure Security & Best Practices (CompTIA Security+)"
-      - "Network Quality/Performance Reporting & Optimization"
-      - "Remote Network & Computer Support (On and Off Campus)"
-      - "Team Leadership by Example & High-Empathy User Communication"
+          <div class="hero-cta-row no-print">
+            <a href="#experience" class="btn-primary" id="hero-explore-btn">
+              <span>Explore Career Timeline</span>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="{{ $r.profile.contact.linkedin }}" target="_blank" rel="noopener noreferrer" class="btn-secondary" id="hero-linkedin-btn">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+              <span>LinkedIn Profile</span>
+            </a>
+            <button type="button" class="btn-ghost" id="copy-email-hero-btn" data-email="{{ $r.profile.contact.email }}">
+              <span class="copy-label">{{ $r.profile.contact.email }}</span>
+              <span class="copy-badge" id="copy-email-feedback">Copy</span>
+            </button>
+          </div>
+        </div>
 
-# =============================================================================
-# FEATURED PROJECTS & INITIATIVES
-# =============================================================================
-projects:
-  - title: "Hardware Fleet Upgrades Tracker & Re-Inventory Automation"
-    category: "Google · Data Center Operations"
-    domain: "operations"
-    period: "Jul 2023 – Present"
-    summary: "Designed and authored an operational tracking system, re-inventory intake workflow, and automated dispatch notification pipeline for coordinating multi-cluster hardware upgrades."
-    outcomes:
-      - "Automated project kick-off emails and drop-zone coordination for floor technicians and dispatch leads."
-      - "Centralized real-time tracking of machine upgrade completion counts and cluster availability limits."
-    tags: ["Data Center Infrastructure", "Workflow Automation", "Fleet Upgrades", "Inventory Control"]
+        <!-- Operational Focus Highlights -->
+        <aside class="hero-highlights" aria-label="Core Operational Areas">
+          {{ range $index, $item := $r.highlights }}
+          <div class="highlight-card">
+            <div class="highlight-icon-box" aria-hidden="true">
+              {{ if eq $index 0 }}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+              </svg>
+              {{ else if eq $index 1 }}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                <circle cx="12" cy="5" r="3"></circle>
+                <line x1="12" y1="8" x2="12" y2="14"></line>
+                <circle cx="6" cy="19" r="3"></circle>
+                <circle cx="18" cy="19" r="3"></circle>
+                <path d="M12 14l-6 2.5"></path>
+                <path d="M12 14l6 2.5"></path>
+              </svg>
+              {{ else }}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                <polyline points="9 12 11 14 15 10"></polyline>
+              </svg>
+              {{ end }}
+            </div>
+            <div class="highlight-body">
+              <div class="highlight-header">
+                <span class="highlight-metric">{{ $item.metric }}</span>
+                <span class="highlight-index">0{{ add $index 1 }}</span>
+              </div>
+              <h2 class="highlight-title">{{ $item.label }}</h2>
+              <p class="highlight-detail">{{ $item.detail }}</p>
+            </div>
+          </div>
+          {{ end }}
+        </aside>
+      </div>
 
-  - title: "Aruba Wireless Access Point Replacement"
-    category: "The University of the South"
-    domain: "networking"
-    period: "Aug 2021 – Jul 2023"
-    summary: "Replaced all campus Wireless Access Points with newer hardware better supported by the university's Aruba Controller to expand coverage area and reliability."
-    outcomes:
-      - "Upgraded wireless coverage footprint and controller support across campus buildings."
-      - "Performed site surveys, physical installation, and network verification."
-    tags: ["Aruba Wireless", "Access Points", "Layer 2/3 Networking", "Site Surveys"]
+      <!-- Key Career Metrics Strip -->
+      <div class="metrics-strip no-print" aria-label="Career At a Glance">
+        <div class="metric-tile">
+          <span class="metric-value">12+</span>
+          <span class="metric-caption">Years IT &amp; Infrastructure Experience</span>
+        </div>
+        <div class="metric-tile">
+          <span class="metric-value">Google</span>
+          <span class="metric-caption">Hyperscale Data Center Operations</span>
+        </div>
+        <div class="metric-tile">
+          <span class="metric-value">11</span>
+          <span class="metric-caption">Industry IT &amp; Security Certifications</span>
+        </div>
+        <div class="metric-tile">
+          <span class="metric-value">B.S. + A.A.S.</span>
+          <span class="metric-caption">Degrees in Information Technology</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  - title: "IP Phone Migration"
-    category: "The University of the South"
-    domain: "networking"
-    period: "Jun 2020 – Sep 2020"
-    summary: "Helped IT staff migrate university users from older analog phones to new Yealink VoIP phones across campus buildings."
-    outcomes:
-      - "Coordinated in IT deployment teams to roll out and provision VoIP handsets across university facilities."
-      - "Modernized campus voice communications and supported post-migration voice network troubleshooting."
-    tags: ["Yealink VoIP", "Voice Networking", "Campus Deployment", "Telephony Migration"]
+  <!-- Interactive Domain Filter Bar -->
+  <section class="filter-bar-section no-print" aria-label="Filter Portfolio by Technical Domain">
+    <div class="container">
+      <div class="filter-bar">
+        <span class="filter-label">Filter Focus:</span>
+        <div class="filter-buttons" role="toolbar" aria-label="Domain filter buttons">
+          <button type="button" class="filter-chip active" data-filter="all" id="filter-all">All Areas</button>
+          {{ range $r.skill_domains }}
+          <button type="button" class="filter-chip" data-filter="{{ .id }}" id="filter-{{ .id }}">
+            <span class="chip-code">{{ .code }}</span>
+            <span>{{ .title }}</span>
+          </button>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </section>
 
-  - title: "AppsAnywhere Implementation"
-    category: "The University of the South"
-    domain: "linux"
-    period: "May 2020 – Jul 2020"
-    summary: "Assisted IT staff with the implementation of AppsAnywhere Software-as-a-Service (SaaS) for centralized university software delivery."
-    outcomes:
-      - "Enabled delivery of all university software from a centralized platform to any device, on and off campus, including Windows and Mac."
-    tags: ["AppsAnywhere SaaS", "Software Delivery", "Windows & Mac", "Endpoint Management"]
+  <!-- Work Experience Timeline -->
+  <section class="section" id="experience">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <span class="section-eyebrow">01 / Career Progression</span>
+          <h2 class="section-title">Professional Experience</h2>
+        </div>
+        <p class="section-subtitle">Hyperscale data center hardware operations, university network infrastructure, and enterprise IT support.</p>
+      </div>
 
-# =============================================================================
-# CERTIFICATIONS, TRAINING & EDUCATION
-# =============================================================================
-certifications:
-  - name: "Google IT Support Certificate"
-    issuer: "Coursera"
-    status: "Issued Jun 2023"
-    detail: "Professional certificate in IT support, networking, operating systems, system administration, and security."
-  - name: "CompTIA Secure Infrastructure Specialist (CSIS)"
-    issuer: "CompTIA"
-    status: "Issued Jan 2023"
-    detail: "Stackable specialist credential validating combined expertise across CompTIA A+, Network+, and Security+."
-  - name: "CompTIA Security+"
-    issuer: "CompTIA"
-    status: "Issued Jan 2023"
-    detail: "Core cybersecurity skills, network security, threat mitigation, and secure infrastructure operations."
-  - name: "CompTIA Network+"
-    issuer: "CompTIA"
-    status: "Issued Jan 2023"
-    detail: "Enterprise wired and wireless networking, Layer 1–3 troubleshooting, DNS/DHCP, and network operations."
-  - name: "CompTIA A+"
-    issuer: "CompTIA"
-    status: "Issued Jan 2023"
-    detail: "Hardware diagnostics, operating systems, troubleshooting, and endpoint/mobile device administration."
-  - name: "CompTIA Cloud Essentials"
-    issuer: "CompTIA"
-    status: "Issued Oct 2020"
-    detail: "Cloud computing principles, service models, cloud operations, and governance."
-  - name: "LPI Linux Essentials"
-    issuer: "Linux Professional Institute (LPI)"
-    status: "Issued Sep 2020"
-    detail: "Linux command-line interface, operating system administration fundamentals, and scripting."
-  - name: "CIW User Interface Designer"
-    issuer: "CIW"
-    status: "Issued Feb 2020"
-    detail: "User interface design principles, web usability, and accessible front-end structure."
-  - name: "ITIL Foundation V4"
-    issuer: "AXELOS Global Best Practice"
-    status: "Issued Sep 2019"
-    detail: "IT service management framework, incident/problem/change workflows, and continual improvement."
-  - name: "CompTIA Project+"
-    issuer: "CompTIA"
-    status: "Issued Sep 2019"
-    detail: "IT project lifecycle management, scheduling, stakeholder communication, and resource coordination."
-  - name: "CompTIA IT Operations Specialist (CIOS)"
-    issuer: "CompTIA"
-    status: "Issued May 2018"
-    detail: "Stackable specialist certification validating hardware and network operations proficiency."
+      <div class="timeline-track" id="experience-list">
+        {{ range $index, $exp := $r.experience }}
+        <article class="timeline-item" data-domains="{{ delimit $exp.domains " " }}">
+          <div class="timeline-node" aria-hidden="true">
+            <span class="node-dot {{ if $exp.current }}node-active{{ end }}"></span>
+          </div>
 
-education:
-  - degree: "Bachelor's degree, Information Technology"
-    institution: "Western Governors University"
-    period: "2018 – 2020"
-    detail: "Undergraduate degree in Information Technology covering enterprise networking, security, systems administration, cloud computing, and project management."
-  - degree: "Associate of Arts and Sciences - AAS, Information Technology"
-    institution: "Chattanooga State Community College"
-    period: "2011 – 2013"
-    detail: "Foundational degree in Information Technology, computer hardware, local area networks, and technical support."
+          <div class="timeline-card">
+            <div class="timeline-card-top">
+              <div class="timeline-role-group">
+                <div class="company-pill-row">
+                  <span class="timeline-company">{{ $exp.company }}</span>
+                  {{ if $exp.current }}
+                  <span class="status-indicator">Current Role</span>
+                  {{ end }}
+                </div>
+                <h3 class="timeline-role">{{ $exp.role }}</h3>
+              </div>
+
+              <div class="timeline-meta-group">
+                <span class="timeline-period">{{ $exp.period }}</span>
+                <span class="timeline-location">{{ $exp.location }}</span>
+              </div>
+            </div>
+
+            <p class="timeline-summary">{{ $exp.summary }}</p>
+
+            <ul class="timeline-bullets {{ if gt (len $exp.bullets) 6 }}bullets-two-col{{ end }}">
+              {{ range $exp.bullets }}
+              <li>{{ . }}</li>
+              {{ end }}
+            </ul>
+
+            <div class="domain-tags no-print">
+              {{ range $exp.domains }}
+              <span class="domain-tag">{{ . }}</span>
+              {{ end }}
+            </div>
+          </div>
+        </article>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Domains & Skills Matrix -->
+  <section class="section section-alt" id="domains">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <span class="section-eyebrow">02 / Technical Specifications</span>
+          <h2 class="section-title">Core Competencies &amp; Systems</h2>
+        </div>
+        <p class="section-subtitle">Hands-on proficiency across physical layer hardware, optical &amp; enterprise networking, Linux/Windows deployment, and ITSM.</p>
+      </div>
+
+      <div class="domains-grid" id="domains-grid">
+        {{ range $index, $dom := $r.skill_domains }}
+        <article class="domain-card" data-domains="{{ $dom.id }}">
+          <div class="domain-card-header">
+            <span class="domain-code">{{ $dom.code }}</span>
+            <h3 class="domain-title">{{ $dom.title }}</h3>
+          </div>
+          <p class="domain-description">{{ $dom.description }}</p>
+          <ul class="skill-list">
+            {{ range $dom.skills }}
+            <li class="skill-item">{{ . }}</li>
+            {{ end }}
+          </ul>
+        </article>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects & Operational Initiatives -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <span class="section-eyebrow">03 / Applied Infrastructure Projects</span>
+          <h2 class="section-title">Featured Initiatives &amp; Rollouts</h2>
+        </div>
+        <p class="section-subtitle">Key operational tooling, campus-wide network hardware refreshes, VoIP migrations, and SaaS deployments.</p>
+      </div>
+
+      <div class="projects-grid" id="projects-grid">
+        {{ range $r.projects }}
+        <article class="project-card" data-domains="{{ .domain }}">
+          <div class="project-top">
+            <span class="project-category">{{ .category }}</span>
+            <span class="project-period">{{ .period }}</span>
+          </div>
+          <h3 class="project-title">{{ .title }}</h3>
+          <p class="project-summary">{{ .summary }}</p>
+          <ul class="project-outcomes">
+            {{ range .outcomes }}
+            <li>{{ . }}</li>
+            {{ end }}
+          </ul>
+          <div class="project-tags">
+            {{ range .tags }}
+            <span class="tech-tag">{{ . }}</span>
+            {{ end }}
+          </div>
+        </article>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section class="section section-alt" id="education">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <span class="section-eyebrow">04 / Academic Foundation</span>
+          <h2 class="section-title">Education</h2>
+        </div>
+        <p class="section-subtitle">Formal degrees in Information Technology, enterprise networking, systems administration, and security.</p>
+      </div>
+
+      <div class="education-grid">
+        {{ range $r.education }}
+        <article class="education-card">
+          <div class="edu-icon-box no-print" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+            </svg>
+          </div>
+          <div class="edu-body">
+            <div class="edu-header">
+              <span class="edu-period">{{ .period }}</span>
+              <span class="edu-institution">{{ .institution }}</span>
+            </div>
+            <h3 class="edu-degree">{{ .degree }}</h3>
+            <p class="edu-detail">{{ .detail }}</p>
+          </div>
+        </article>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications & Licenses Grid -->
+  <section class="section" id="certifications">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <span class="section-eyebrow">05 / Verified Credentials</span>
+          <h2 class="section-title">Licenses &amp; Certifications ({{ len $r.certifications }})</h2>
+        </div>
+        <p class="section-subtitle">Industry certifications across Google IT Support, Linux (LPI), CompTIA Security+/Network+/A+/Project+/Cloud, ITIL v4, and UI Design.</p>
+      </div>
+
+      <div class="certs-grid">
+        {{ range $r.certifications }}
+        <article class="cert-card">
+          <div class="cert-top">
+            <span class="cert-issuer-pill">{{ .issuer }}</span>
+            <span class="cert-date">{{ .status }}</span>
+          </div>
+          <h3 class="cert-name">{{ .name }}</h3>
+          <p class="cert-detail">{{ .detail }}</p>
+        </article>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section section-alt contact-section no-print" id="contact">
+    <div class="container">
+      <div class="contact-box">
+        <div class="contact-copy">
+          <span class="section-eyebrow">06 / Connect</span>
+          <h2 class="section-title">Let's Connect</h2>
+          <p class="contact-description">
+            Interested in connecting regarding data center infrastructure, enterprise networking, or IT systems operations? Reach out via email or LinkedIn.
+          </p>
+        </div>
+
+        <div class="contact-links">
+          <a href="{{ $r.profile.contact.linkedin }}" target="_blank" rel="noopener noreferrer" class="contact-item" id="contact-linkedin-link">
+            <span class="contact-item-label">LinkedIn</span>
+            <span class="contact-item-value">linkedin.com/in/neal-raulston</span>
+          </a>
+          <a href="mailto:{{ $r.profile.contact.email }}" class="contact-item" id="contact-email-link">
+            <span class="contact-item-label">Email</span>
+            <span class="contact-item-value">{{ $r.profile.contact.email }}</span>
+          </a>
+          <a href="{{ $r.profile.contact.github }}" target="_blank" rel="noopener noreferrer" class="contact-item" id="contact-github-link">
+            <span class="contact-item-label">GitHub</span>
+            <span class="contact-item-value">github.com/nraulston</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer no-print">
+  <div class="container footer-inner">
+    <p class="footer-copy">
+      <strong>{{ $r.profile.name }}</strong> · {{ $r.profile.headline }} at {{ $r.profile.organization }} · Built with <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer">Netlify</a>
+    </p>
+    <p class="footer-note">{{ $r.profile.contact.location_display }}</p>
+  </div>
+</footer>
+{{ end }}
